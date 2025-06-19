@@ -49,6 +49,18 @@
     th {
       background-color: #eef;
     }
+    input, textarea {
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    textarea {
+      width: 100%;
+      resize: vertical;
+    }
     .actions {
       text-align: right;
       margin-bottom: 10px;
@@ -84,7 +96,7 @@
       .actions, button {
         display: none !important;
       }
-      input {
+      input, textarea {
         border: none;
       }
     }
@@ -122,16 +134,14 @@
   <table>
     <thead>
       <tr>
-        <th>Item #</th>
-        <th>Description</th>
-        <th>Quantity</th>
+        <th style="width: 80px;">Item #</th>
+        <th style="width: 50%;">Description</th>
+        <th style="width: 100px;">Quantity</th>
         <th>Unit</th>
         <th class="actions">Action</th>
       </tr>
     </thead>
-    <tbody id="pullout-table">
-      <!-- Rows will be added dynamically -->
-    </tbody>
+    <tbody id="pullout-table"></tbody>
   </table>
 
   <div style="text-align:center; font-style: italic;">Nothing Follows</div>
@@ -150,15 +160,14 @@
   function addRow() {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td><input type="text"></td>
-      <td><input type="text"></td>
-      <td><input type="number" min="0"></td>
+      <td><input type="text" style="width: 80px;"></td>
+      <td><textarea rows="2"></textarea></td>
+      <td><input type="number" min="0" style="width: 80px;"></td>
       <td><input type="text"></td>
       <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
     `;
     document.getElementById('pullout-table').appendChild(row);
   }
-  // Add 10 initial rows
   for (let i = 0; i < 10; i++) addRow();
 </script>
 
