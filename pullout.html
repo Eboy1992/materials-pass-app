@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -66,7 +66,7 @@
       padding-top: 20px;
     }
     @media print {
-      .actions, nav, .nav-bar, button { display: none !important; }
+      .actions, nav, .nav-bar, .button { display: none !important; }
       input { border: none; }
     }
   </style>
@@ -78,6 +78,38 @@
     <img src="header.png" alt="Fecient Header" style="max-width: 100%; height: auto;" />
   </div>
   <h2 style="text-align:center;">PULLOUT OF MATERIALS PASS</h2>
+
+  <!-- New section from image -->
+  <table>
+    <tr>
+      <td>Location:</td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Purpose:</td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Destination:</td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Project Title:</td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Owner:</td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Contractor:</td>
+      <td><input type="text" /></td>
+    </tr>
+    <tr>
+      <td>Date:</td>
+      <td><input type="text" /></td>
+    </tr>
+  </table>
 
   <div class="actions">
     <button onclick="addRow()">Add Row</button>
@@ -111,7 +143,7 @@
 <script>
   function addRow() {
     const row = document.createElement('tr');
-    row.innerHTML = `
+    row.innerHTML = `  
       <td><input type="text"></td>
       <td><input type="text"></td>
       <td><input type="text"></td>
