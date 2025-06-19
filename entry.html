@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTRY OF MATERIALS PASS</title>
+  <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f9;
+    color: #222;
+  }
+  header {
+    background: #003366;
+    color: white;
+    padding: 16px;
+    text-align: center;
+  }
+  .form-container {
+    background: white;
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 20px 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  th {
+    background: #eef;
+  }
+  input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .actions {
+    text-align: right;
+    margin: 10px 0;
+  }
+  .actions button {
+    padding: 10px 16px;
+    margin-left: 8px;
+    background: #0066cc;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .actions button:hover {
+    background: #004999;
+  }
+  .signature-table td {
+    border: none;
+    padding-top: 20px;
+  }
+  @media print {
+    .actions, nav, .nav-bar, button { display: none !important; }
+    input { border: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+  <div style="text-align: center;">
+    <img src="header.png" alt="Fecient Header" style="max-width: 100%; height: auto;" />
+  </div>
+  <h2 style="text-align:center;">ENTRY OF MATERIALS PASS</h2>
+
+  <div class="actions">
+    <button onclick="addRow()">Add Row</button>
+    <button onclick="window.print()">Print</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Item #</th><th>Description</th><th>Qty</th><th>Unit</th><th class="actions">Action</th></tr>
+    </thead>
+    <tbody id="entry-table">
+    </tbody>
+  </table>
+
+  <div style="text-align:center;font-style:italic;">Nothing Follows</div>
+
+  <table class="signature-table">
+    <tr>
+      <td>Prepared by:<br><input type="text" /></td>
+      <td>Checked by:<br><input type="text" /></td>
+      <td>Approved by:<br><input type="text" /></td>
+    </tr>
+  </table>
+</div>
+
+<script>
+  function addRow() {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
+    `;
+    document.getElementById('entry-table').appendChild(row);
+  }
+  for (let i = 0; i < 5; i++) addRow();
+</script>
+
+</body>
+</html>
