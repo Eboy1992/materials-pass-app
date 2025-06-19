@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,6 @@
       margin: 0;
       padding: 0;
     }
-
     .form-container {
       background: white;
       max-width: 960px;
@@ -19,42 +19,41 @@
       padding: 20px 30px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
     img.header-img {
       max-width: 100%;
       height: auto;
       margin-bottom: 10px;
     }
-
     h2 {
       text-align: center;
       margin-top: 0;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 20px;
     }
-
     th, td {
       border: 1px solid #ccc;
       padding: 6px;
       text-align: left;
     }
-
-    input {
+    input, textarea {
       width: 100%;
       padding: 6px;
       border: 1px solid #ccc;
       box-sizing: border-box;
+      border-radius: 4px;
+      font-family: inherit;
     }
-
+    textarea {
+      resize: vertical;
+      font-size: 14px;
+    }
     .actions {
       text-align: right;
       margin: 10px 0;
     }
-
     .actions button {
       padding: 8px 12px;
       margin-left: 5px;
@@ -64,23 +63,19 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
     .actions button:hover {
       background-color: #004c99;
     }
-
     .no-border td {
       border: none !important;
     }
-
     .italic {
       font-style: italic;
       text-align: center;
     }
-
     @media print {
       .actions, button { display: none !important; }
-      input { border: none; }
+      input, textarea { border: none; }
     }
   </style>
 </head>
@@ -88,7 +83,6 @@
   <div class="form-container">
     <img src="header.png" alt="Company Header" class="header-img" />
     <h2>LIST OF TOOLS/MATERIALS FOR ENTRY</h2>
-
     <table class="no-border">
       <tr>
         <td><strong>Work Site:</strong> <input type="text" /></td>
@@ -113,7 +107,7 @@
       <thead>
         <tr>
           <th>ITEM #</th>
-          <th>DESCRIPTION</th>
+          <th style="width: 50%;">DESCRIPTION</th>
           <th>QUANTITY</th>
           <th>UNIT</th>
           <th class="actions">Action</th>
@@ -146,16 +140,14 @@
     function addRow() {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
+        <td><input type="text" style="width: 80px;"></td>
+        <td><textarea rows="2" style="width: 100%;"></textarea></td>
+        <td><input type="number" min="0" style="width: 80px;"></td>
         <td><input type="text"></td>
         <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
       `;
       document.getElementById("entry-table").appendChild(row);
     }
-
-    // Add 5 rows by default
     for (let i = 0; i < 5; i++) addRow();
   </script>
 </body>
