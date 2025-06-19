@@ -1,30 +1,40 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PULLOUT OF MATERIALS PASS</title>
+  <title>Pullout of Materials Pass</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
       margin: 0;
       padding: 0;
-      background: #f4f6f9;
-      color: #222;
-    }
-    header {
-      background: #003366;
-      color: white;
-      padding: 16px;
-      text-align: center;
     }
     .form-container {
-      background: white;
       max-width: 960px;
+      background: white;
       margin: 20px auto;
-      padding: 20px 30px;
+      padding: 30px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .field-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .field-row label {
+      flex: 1;
+    }
+    label input {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
     table {
       width: 100%;
@@ -34,82 +44,75 @@
     th, td {
       border: 1px solid #ccc;
       padding: 8px;
+      text-align: left;
     }
     th {
-      background: #eef;
-    }
-    input {
-      width: 100%;
-      padding: 6px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
+      background-color: #eef;
     }
     .actions {
       text-align: right;
-      margin: 10px 0;
+      margin-bottom: 10px;
     }
     .actions button {
-      padding: 10px 16px;
-      margin-left: 8px;
-      background: #0066cc;
-      border: none;
+      background-color: #0066cc;
       color: white;
+      padding: 10px 16px;
+      border: none;
       border-radius: 4px;
       cursor: pointer;
+      margin-left: 10px;
     }
     .actions button:hover {
-      background: #004999;
+      background-color: #004999;
+    }
+    .signature-table {
+      width: 100%;
+      margin-top: 30px;
     }
     .signature-table td {
+      padding: 20px 10px 0;
       border: none;
-      padding-top: 20px;
+      vertical-align: top;
+    }
+    .signature-table input {
+      width: 100%;
+      border: 1px solid #ccc;
+      padding: 6px;
+      border-radius: 4px;
     }
     @media print {
-      .actions, nav, .nav-bar, .button { display: none !important; }
-      input { border: none; }
+      .actions, button {
+        display: none !important;
+      }
+      input {
+        border: none;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="form-container">
+
   <div style="text-align: center;">
     <img src="header.png" alt="Fecient Header" style="max-width: 100%; height: auto;" />
   </div>
-  <h2 style="text-align:center;">PULLOUT OF MATERIALS PASS</h2>
 
-  <!-- New section from image -->
-  <table>
-    <tr>
-      <td>Location:</td>
-      <td><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>Purpose:</td>
-      <td><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>Destination:</td>
-      <td><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>Project Title:</td>
-      <td><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>Owner:</td>
-      <td><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>Contractor:</td>
-      <td><input type="text" /></td>
-    </tr>
-    <tr>
-      <td>Date:</td>
-      <td><input type="text" /></td>
-    </tr>
-  </table>
+  <h2>PULLOUT OF MATERIALS PASS</h2>
+
+  <div class="field-row">
+    <label>Location: <input type="text"></label>
+    <label>Purpose: <input type="text"></label>
+    <label>Date: <input type="date"></label>
+  </div>
+  <div class="field-row">
+    <label>Destination: <input type="text"></label>
+    <label>Project Title: <input type="text"></label>
+  </div>
+  <div class="field-row">
+    <label>Owner: <input type="text"></label>
+    <label>Contractor: <input type="text"></label>
+  </div>
 
   <div class="actions">
     <button onclick="addRow()">Add Row</button>
@@ -118,40 +121,45 @@
 
   <table>
     <thead>
-      <tr><th>Item #</th><th>Description</th><th>Quantity</th><th>Unit</th></tr>
+      <tr>
+        <th>Item #</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <th class="actions">Action</th>
+      </tr>
     </thead>
     <tbody id="pullout-table">
+      <!-- Rows will be added dynamically -->
     </tbody>
   </table>
 
-  <div style="text-align:center; font-style:italic; padding-top: 10px;">Nothing Follows</div>
+  <div style="text-align:center; font-style: italic;">Nothing Follows</div>
 
   <table class="signature-table">
     <tr>
-      <td>Prepared by:<br><input type="text" /></td>
-      <td>Checked by:<br><input type="text" /></td>
-      <td>Approved by:<br><input type="text" /></td>
+      <td>Pulled out by:<br><input type="text"><br><small>FECIENT Solutions Provider</small><br>Date: <input type="date"></td>
+      <td>Approved by:<br><input type="text"></td>
+      <td>Checked by:<br><input type="text"><br><small>Gate Security</small><br>Date: <input type="date"></td>
     </tr>
   </table>
 
-  <div class="actions">
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="window.print()">Print</button>
-  </div>
 </div>
 
 <script>
   function addRow() {
     const row = document.createElement('tr');
-    row.innerHTML = `  
+    row.innerHTML = `
       <td><input type="text"></td>
       <td><input type="text"></td>
+      <td><input type="number" min="0"></td>
       <td><input type="text"></td>
-      <td><input type="text"></td>
+      <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
     `;
     document.getElementById('pullout-table').appendChild(row);
   }
-  for (let i = 0; i < 5; i++) addRow();
+  // Add 10 initial rows
+  for (let i = 0; i < 10; i++) addRow();
 </script>
 
 </body>
