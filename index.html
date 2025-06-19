@@ -37,6 +37,17 @@
       border: none;
     }
   </style>
+  <script>
+    // Simple JavaScript password protection
+    window.onload = function () {
+      const password = "Rico@2025";
+      const input = prompt("Enter password to access this page:");
+      if (input !== password) {
+        alert("Access denied!");
+        document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Unauthorized Access</h2>";
+      }
+    };
+  </script>
 </head>
 <body>
 
