@@ -30,7 +30,7 @@
       height: auto;
     }
 
-    .top-row {
+    .form-title {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -38,27 +38,25 @@
       margin-bottom: 20px;
     }
 
-    .form-title-right {
+    .form-title h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .pr-info {
       text-align: right;
     }
 
-    .form-title-right h2 {
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    .form-title-right label {
-      display: block;
+    .pr-info label {
       font-weight: bold;
-      margin-top: 10px;
-      margin-bottom: 4px;
+      display: block;
+      margin-top: 8px;
     }
 
-    .form-title-right input {
+    .pr-info input {
       padding: 6px;
       width: 180px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      margin-top: 2px;
     }
 
     table {
@@ -163,15 +161,14 @@
     <img src="header.png" alt="Fecient Header" />
   </div>
 
-  <!-- Top Right Form Title and Info -->
-  <div class="top-row">
-    <div></div> <!-- Left spacer -->
-    <div class="form-title-right">
-      <h2>PURCHASE REQUISITION FORM</h2>
-      <label for="prno">PR No.:</label>
-      <input id="prno" type="text" placeholder="Enter PR No.">
-      <label for="prdate">Date:</label>
-      <input id="prdate" type="date">
+  <!-- Title and PR Info -->
+  <div class="form-title">
+    <h2>PURCHASE REQUISITION FORM</h2>
+    <div class="pr-info">
+      <label>PR No.:</label>
+      <input type="text" placeholder="Enter PR No.">
+      <label>Date:</label>
+      <input type="date">
     </div>
   </div>
 
@@ -223,7 +220,8 @@
     document.getElementById('pr-table').appendChild(row);
   }
 
-  addRow(); // Add initial row
+  // Pre-populate with 1 empty row
+  addRow();
 </script>
 
 </body>
