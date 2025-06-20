@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Purchase Requisition Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
       padding: 20px;
+      background: #ffffff;
     }
 
     h2 {
@@ -26,8 +26,20 @@
       flex: 1;
     }
 
-    .form-header label {
+    label {
       font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 60px;
     }
 
     table {
@@ -47,14 +59,10 @@
       color: white;
     }
 
-    .purpose-section {
-      margin-bottom: 20px;
-    }
-
     .signatures {
       display: flex;
       justify-content: space-between;
-      margin-top: 30px;
+      margin-top: 40px;
     }
 
     .signatures div {
@@ -62,15 +70,10 @@
       text-align: center;
     }
 
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 6px;
-      box-sizing: border-box;
-    }
-
-    textarea {
-      resize: vertical;
-      height: 60px;
+    .signatures hr {
+      margin-top: 40px;
+      border: none;
+      border-bottom: 1px solid #000;
     }
   </style>
 </head>
@@ -80,12 +83,12 @@
 
   <div class="form-header">
     <div>
-      <label>PR NO.:</label><br>
-      <input type="text">
+      <label>PR NO.:</label>
+      <input type="text" placeholder="Enter PR number">
     </div>
-    <div style="text-align:right;">
-      <label>DATE:</label><br>
-      <input type="text">
+    <div style="text-align: right;">
+      <label>DATE:</label>
+      <input type="text" placeholder="MM/DD/YYYY">
     </div>
   </div>
 
@@ -99,7 +102,7 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Add more rows as needed -->
+      <!-- Add more rows if needed -->
       <tr>
         <td><input type="text"></td>
         <td><input type="text"></td>
@@ -121,9 +124,9 @@
     </tbody>
   </table>
 
-  <div class="purpose-section">
+  <div>
     <label>PURPOSE:</label>
-    <textarea></textarea>
+    <textarea placeholder="Enter purpose here..."></textarea>
   </div>
 
   <div class="signatures">
@@ -143,4 +146,3 @@
 
 </body>
 </html>
-
