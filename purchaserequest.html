@@ -1,87 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Purchase Requisition Form</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
       margin: 0;
-      padding: 30px 10px;
+      padding: 0;
     }
 
     .form-container {
-      max-width: 1000px;
-      margin: auto;
-      background: #ffffff;
+      max-width: 960px;
+      background: white;
+      margin: 20px auto;
       padding: 30px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
     }
 
-    .header {
+    .form-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 2px solid #003366;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
-    .logo-section {
-      display: flex;
-      gap: 10px;
-    }
-
-    .logo-section img {
-      height: 70px;
-    }
-
-    .pr-info {
+    .form-header .right {
       text-align: right;
     }
 
-    .pr-info label {
+    .form-header .right label {
+      display: block;
       font-weight: bold;
+      margin-top: 8px;
     }
 
-    .pr-info input {
-      display: block;
-      margin-top: 5px;
-      margin-bottom: 10px;
+    .form-header .right input {
       padding: 6px;
       width: 180px;
+      margin-top: 2px;
     }
 
     h2 {
       text-align: center;
-      color: #003366;
-      margin-top: 10px;
-    }
-
-    .controls {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
       margin: 20px 0;
     }
 
-    .nav-button {
-      background-color: #0055aa;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.3s ease;
+    .actions {
+      text-align: right;
+      margin-bottom: 10px;
     }
 
-    .nav-button:hover {
-      background-color: #003f7f;
-      transform: translateY(-2px);
+    .actions button {
+      background-color: #0066cc;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .actions button:hover {
+      background-color: #004999;
     }
 
     table {
@@ -101,159 +85,139 @@
       color: white;
     }
 
-    textarea {
-      resize: vertical;
-      width: 100%;
-      height: 40px;
-    }
-
-    .action-btn {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 6px 12px;
+    input, textarea {
+      padding: 6px;
+      border: 1px solid #ccc;
       border-radius: 4px;
-      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      box-sizing: border-box;
     }
 
-    .action-btn:hover {
-      background-color: #0056b3;
+    textarea {
+      width: 100%;
+      resize: vertical;
     }
 
-    .purpose {
-      margin-top: 20px;
+    .purpose-section {
+      margin-bottom: 30px;
     }
 
-    .purpose label {
+    .purpose-section label {
       font-weight: bold;
       display: block;
       margin-bottom: 5px;
     }
 
-    .purpose textarea {
+    .purpose-section textarea {
       width: 100%;
-      padding: 10px;
       height: 60px;
-      box-sizing: border-box;
+    }
+
+    .signature-table {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .signature-table td {
+      padding: 20px 10px 0;
+      border: none;
+      vertical-align: top;
+    }
+
+    .signature-table input {
+      width: 100%;
       border: 1px solid #ccc;
+      padding: 6px;
       border-radius: 4px;
     }
 
-    .signatures {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 40px;
-      gap: 10px;
-    }
+    @media print {
+      .actions, button {
+        display: none !important;
+      }
 
-    .signatures .sig-block {
-      flex: 1;
-      text-align: center;
-    }
-
-    .sig-input {
-      border: none;
-      border-bottom: 1px solid #000;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .sig-label {
-      font-weight: bold;
+      input, textarea {
+        border: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="form-container">
+<div class="form-container">
 
-    <!-- HEADER -->
-    <div class="header">
-      <div class="logo-section">
-        <img src="header.png" alt="Fecient Logo" />
-      </div>
-      <div class="pr-info">
-        <label>PR No.:</label><br>
-        <input type="text" placeholder="Enter PR No.">
-        <label>Date:</label><br>
-        <input type="date">
-      </div>
-    </div>
+  <!-- Logo -->
+  <div style="text-align: center;">
+    <img src="header.png" alt="Fecient Header" style="max-width: 100%; height: auto;" />
+  </div>
 
-    <!-- TITLE -->
-    <h2>PURCHASE REQUISITION FORM</h2>
-
-    <!-- BUTTONS -->
-    <div class="controls">
-      <button class="nav-button" onclick="addRow()">Add Row</button>
-      <button class="nav-button" onclick="window.print()">Print</button>
-    </div>
-
-    <!-- TABLE -->
-    <table id="pr-table">
-      <thead>
-        <tr>
-          <th>ITEM #</th>
-          <th>DESCRIPTION</th>
-          <th>QUANTITY</th>
-          <th>UNIT</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text"></td>
-          <td><textarea></textarea></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- PURPOSE -->
-    <div class="purpose">
-      <label>PURPOSE:</label>
-      <textarea placeholder="Enter purpose here..."></textarea>
-    </div>
-
-    <!-- SIGNATURES -->
-    <div class="signatures">
-      <div class="sig-block">
-        <input type="text" class="sig-input" placeholder="Type name here">
-        <div class="sig-label">Requested by:</div>
-      </div>
-      <div class="sig-block">
-        <input type="text" class="sig-input" placeholder="Type name here">
-        <div class="sig-label">Reviewed by:</div>
-      </div>
-      <div class="sig-block">
-        <input type="text" class="sig-input" placeholder="Type name here">
-        <div class="sig-label">Approved by:</div>
-      </div>
+  <!-- PR No. and Date -->
+  <div class="form-header">
+    <div></div> <!-- spacer -->
+    <div class="right">
+      <label>PR No.:</label>
+      <input type="text" placeholder="Enter PR No.">
+      <label>Date:</label>
+      <input type="date">
     </div>
   </div>
 
-  <script>
-    function addRow() {
-      const table = document.getElementById("pr-table").getElementsByTagName("tbody")[0];
-      const row = table.insertRow();
-      row.innerHTML = `
-        <td><input type="text"></td>
-        <td><textarea></textarea></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-        <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
-      `;
-    }
+  <!-- Title -->
+  <h2>PURCHASE REQUISITION FORM</h2>
 
-    function deleteRow(button) {
-      const row = button.closest("tr");
-      row.remove();
-    }
-  </script>
+  <!-- Buttons -->
+  <div class="actions">
+    <button onclick="addRow()">Add Row</button>
+    <button onclick="window.print()">Print</button>
+  </div>
+
+  <!-- Table -->
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 80px;">Item #</th>
+        <th style="width: 50%;">Description</th>
+        <th style="width: 100px;">Quantity</th>
+        <th>Unit</th>
+        <th class="actions">Action</th>
+      </tr>
+    </thead>
+    <tbody id="pr-table"></tbody>
+  </table>
+
+  <!-- Purpose -->
+  <div class="purpose-section">
+    <label>PURPOSE:</label>
+    <textarea placeholder="Enter purpose here..."></textarea>
+  </div>
+
+  <!-- Signature -->
+  <table class="signature-table">
+    <tr>
+      <td>Requested by:<br><input type="text"><br><br></td>
+      <td>Reviewed by:<br><input type="text"><br><br></td>
+      <td>Approved by:<br><input type="text"><br><br></td>
+    </tr>
+  </table>
+
+</div>
+
+<script>
+  function addRow() {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td><input type="text" style="width: 80px;"></td>
+      <td><textarea rows="2"></textarea></td>
+      <td><input type="number" min="0" style="width: 80px;"></td>
+      <td><input type="text"></td>
+      <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
+    `;
+    document.getElementById('pr-table').appendChild(row);
+  }
+
+  for (let i = 0; i < 5; i++) addRow();
+</script>
 
 </body>
 </html>
