@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Requisition Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .form-header div {
+      flex: 1;
+    }
+
+    .form-header label {
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #003366;
+      color: white;
+    }
+
+    .purpose-section {
+      margin-bottom: 20px;
+    }
+
+    .signatures {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .signatures div {
+      width: 30%;
+      text-align: center;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>PURCHASE REQUISITION FORM</h2>
+
+  <div class="form-header">
+    <div>
+      <label>PR NO.:</label><br>
+      <input type="text">
+    </div>
+    <div style="text-align:right;">
+      <label>DATE:</label><br>
+      <input type="text">
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ITEM #</th>
+        <th>DESCRIPTION</th>
+        <th>QTY</th>
+        <th>UNIT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Add more rows as needed -->
+      <tr>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="purpose-section">
+    <label>PURPOSE:</label>
+    <textarea></textarea>
+  </div>
+
+  <div class="signatures">
+    <div>
+      <label>Requested by:</label>
+      <hr>
+    </div>
+    <div>
+      <label>Reviewed by:</label>
+      <hr>
+    </div>
+    <div>
+      <label>Approved by:</label>
+      <hr>
+    </div>
+  </div>
+
+</body>
+</html>
 
