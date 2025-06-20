@@ -11,17 +11,43 @@
       background: #fff;
     }
 
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #003366;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      height: 60px;
+    }
+
+    .header h1 {
+      color: #003366;
+      margin: 0;
+      font-size: 20px;
+      text-align: right;
+      flex: 1;
+    }
+
     h2 {
       text-align: center;
       color: #003366;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
     }
 
-    .top-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
+    .info-section {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
       margin-bottom: 20px;
+    }
+
+    .info-section div {
+      width: 200px;
     }
 
     label {
@@ -106,31 +132,37 @@
       text-align: center;
     }
 
-    .signatures hr {
-      margin-top: 40px;
+    .signatures input {
       border: none;
       border-bottom: 1px solid #000;
+      width: 100%;
+      text-align: center;
+      padding: 5px;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .purpose-section {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <h2>PURCHASE REQUISITION FORM</h2>
+  <div class="header">
+    <img src="https://i.imgur.com/O8b5Fbw.png" alt="Fecient Logo" />
+    <h1>PURCHASE REQUISITION FORM</h1>
+  </div>
 
-  <div class="top-section">
+  <div class="info-section">
     <div>
-      <label>PR NO.:</label>
+      <label>PR No.:</label>
       <input type="text" placeholder="Enter PR number">
     </div>
     <div>
       <label>Date:</label>
       <input type="date">
     </div>
-  </div>
-
-  <div>
-    <label>Purpose:</label>
-    <textarea placeholder="Enter purpose here..."></textarea>
   </div>
 
   <div class="controls">
@@ -149,14 +181,6 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Default 3 rows -->
-      <tr>
-        <td><input type="text"></td>
-        <td><textarea></textarea></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-        <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
-      </tr>
       <tr>
         <td><input type="text"></td>
         <td><textarea></textarea></td>
@@ -174,18 +198,23 @@
     </tbody>
   </table>
 
+  <div class="purpose-section">
+    <label>Purpose:</label>
+    <textarea rows="3" placeholder="Enter purpose here..."></textarea>
+  </div>
+
   <div class="signatures">
     <div>
-      <label>Requested by:</label>
-      <hr>
+      <input type="text" placeholder="Requested by">
+      <label>Requested by</label>
     </div>
     <div>
-      <label>Reviewed by:</label>
-      <hr>
+      <input type="text" placeholder="Reviewed by">
+      <label>Reviewed by</label>
     </div>
     <div>
-      <label>Approved by:</label>
-      <hr>
+      <input type="text" placeholder="Approved by">
+      <label>Approved by</label>
     </div>
   </div>
 
