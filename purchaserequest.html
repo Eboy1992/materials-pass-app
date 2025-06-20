@@ -8,44 +8,44 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: #ffffff;
+      background: #fff;
     }
 
     h2 {
       text-align: center;
       color: #003366;
+      margin-bottom: 30px;
     }
 
-    .form-header {
-      display: flex;
-      justify-content: space-between;
+    .top-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
       margin-bottom: 20px;
-    }
-
-    .form-header div {
-      flex: 1;
     }
 
     label {
       font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
     }
 
-    input[type="text"], textarea {
+    input[type="text"], input[type="date"], textarea {
       width: 100%;
-      padding: 6px;
-      margin-top: 4px;
+      padding: 8px;
       box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
 
     textarea {
       resize: vertical;
-      height: 60px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin-top: 20px;
     }
 
     th, td {
@@ -57,6 +57,42 @@
     th {
       background-color: #003366;
       color: white;
+    }
+
+    .action-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .controls .nav-button {
+      background-color: #0055aa;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .controls .nav-button:hover {
+      background-color: #003f7f;
+      transform: translateY(-2px);
     }
 
     .signatures {
@@ -81,53 +117,62 @@
 
   <h2>PURCHASE REQUISITION FORM</h2>
 
-  <div class="form-header">
+  <div class="top-section">
     <div>
       <label>PR NO.:</label>
       <input type="text" placeholder="Enter PR number">
     </div>
-    <div style="text-align: right;">
-      <label>DATE:</label>
-      <input type="text" placeholder="MM/DD/YYYY">
+    <div>
+      <label>Date:</label>
+      <input type="date">
     </div>
   </div>
 
-  <table>
+  <div>
+    <label>Purpose:</label>
+    <textarea placeholder="Enter purpose here..."></textarea>
+  </div>
+
+  <div class="controls">
+    <button class="nav-button" onclick="addRow()">Add Row</button>
+    <button class="nav-button" onclick="window.print()">Print</button>
+  </div>
+
+  <table id="pr-table">
     <thead>
       <tr>
         <th>ITEM #</th>
         <th>DESCRIPTION</th>
-        <th>QTY</th>
+        <th>QUANTITY</th>
         <th>UNIT</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <!-- Add more rows if needed -->
+      <!-- Default 3 rows -->
       <tr>
         <td><input type="text"></td>
+        <td><textarea></textarea></td>
         <td><input type="text"></td>
         <td><input type="text"></td>
-        <td><input type="text"></td>
+        <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
       </tr>
       <tr>
         <td><input type="text"></td>
+        <td><textarea></textarea></td>
         <td><input type="text"></td>
         <td><input type="text"></td>
-        <td><input type="text"></td>
+        <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
       </tr>
       <tr>
         <td><input type="text"></td>
+        <td><textarea></textarea></td>
         <td><input type="text"></td>
         <td><input type="text"></td>
-        <td><input type="text"></td>
+        <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
       </tr>
     </tbody>
   </table>
-
-  <div>
-    <label>PURPOSE:</label>
-    <textarea placeholder="Enter purpose here..."></textarea>
-  </div>
 
   <div class="signatures">
     <div>
@@ -143,6 +188,25 @@
       <hr>
     </div>
   </div>
+
+  <script>
+    function addRow() {
+      const table = document.getElementById("pr-table").getElementsByTagName("tbody")[0];
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td><input type="text"></td>
+        <td><textarea></textarea></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
+      `;
+    }
+
+    function deleteRow(button) {
+      const row = button.closest("tr");
+      row.remove();
+    }
+  </script>
 
 </body>
 </html>
