@@ -110,6 +110,15 @@
       background-color: #004999;
     }
 
+    .delete-btn {
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
     .purpose-section {
       margin-bottom: 30px;
     }
@@ -183,6 +192,7 @@
         <th style="width: 60%;">Description</th>
         <th style="width: 100px;">Quantity</th>
         <th>Unit</th>
+        <th style="width: 100px;">Action</th>
       </tr>
     </thead>
     <tbody id="pr-table"></tbody>
@@ -219,8 +229,13 @@
       <td><textarea rows="2" style="width: 100%;"></textarea></td>
       <td><input type="number" min="0" style="width: 100%;"></td>
       <td><input type="text" style="width: 100%;"></td>
+      <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
     `;
     document.getElementById('pr-table').appendChild(row);
+  }
+
+  function deleteRow(button) {
+    button.closest('tr').remove();
   }
 
   // Add 5 default rows
