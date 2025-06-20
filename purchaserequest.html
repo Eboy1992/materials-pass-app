@@ -1,54 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Purchase Requisition Form</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #fff;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 30px 10px;
+    }
+
+    .form-container {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
     }
 
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
+      border-bottom: 2px solid #003366;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    .header .left {
-      max-width: 70%;
+    .logo-section {
+      display: flex;
+      gap: 10px;
     }
 
-    .header .left h2 {
-      margin: 0;
-      color: #003366;
+    .logo-section img {
+      height: 70px;
     }
 
-    .header .left p {
-      margin: 2px 0;
-      font-size: 13px;
-    }
-
-    .header .right {
+    .pr-info {
       text-align: right;
     }
 
-    .header .right label {
+    .pr-info label {
       font-weight: bold;
     }
 
-    .header .right input {
+    .pr-info input {
+      display: block;
+      margin-top: 5px;
       margin-bottom: 10px;
       padding: 6px;
-      width: 160px;
+      width: 180px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+      margin-top: 10px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .nav-button {
+      background-color: #0055aa;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #003f7f;
+      transform: translateY(-2px);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     th, td {
@@ -62,6 +101,12 @@
       color: white;
     }
 
+    textarea {
+      resize: vertical;
+      width: 100%;
+      height: 40px;
+    }
+
     .action-btn {
       background-color: #007bff;
       color: white;
@@ -73,29 +118,6 @@
 
     .action-btn:hover {
       background-color: #0056b3;
-    }
-
-    .controls {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .controls .nav-button {
-      background-color: #0055aa;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .controls .nav-button:hover {
-      background-color: #003f7f;
-      transform: translateY(-2px);
     }
 
     .purpose {
@@ -121,10 +143,11 @@
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
+      gap: 10px;
     }
 
     .signatures .sig-block {
-      width: 30%;
+      flex: 1;
       text-align: center;
     }
 
@@ -144,60 +167,72 @@
 </head>
 <body>
 
- <div class="form-container">
-    <img src="header.png" alt="Company Header" class="header-img" />
-    <div class="right">
-      <label>PR No.:</label><br>
-      <input type="text" placeholder="Enter PR No."><br>
-      <label>Date:</label><br>
-      <input type="date">
+  <div class="form-container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-section">
+        <img src="header.png" alt="Fecient Logo" />
+      </div>
+      <div class="pr-info">
+        <label>PR No.:</label><br>
+        <input type="text" placeholder="Enter PR No.">
+        <label>Date:</label><br>
+        <input type="date">
+      </div>
     </div>
 
-  <h2 style="text-align:center; margin-top: 30px;">PURCHASE REQUISITION FORM</h2>
+    <!-- TITLE -->
+    <h2>PURCHASE REQUISITION FORM</h2>
 
-  <div class="controls">
-    <button class="nav-button" onclick="addRow()">Add Row</button>
-    <button class="nav-button" onclick="window.print()">Print</button>
-  </div>
-
-  <table id="pr-table">
-    <thead>
-      <tr>
-        <th>ITEM #</th>
-        <th>DESCRIPTION</th>
-        <th>QUANTITY</th>
-        <th>UNIT</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="text"></td>
-        <td><textarea></textarea></td>
-        <td><input type="text"></td>
-        <td><input type="text"></td>
-        <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="purpose">
-    <label>PURPOSE:</label>
-    <textarea placeholder="Enter purpose here..."></textarea>
-  </div>
-
-  <div class="signatures">
-    <div class="sig-block">
-      <input type="text" class="sig-input" placeholder="Type name here">
-      <div class="sig-label">Requested by:</div>
+    <!-- BUTTONS -->
+    <div class="controls">
+      <button class="nav-button" onclick="addRow()">Add Row</button>
+      <button class="nav-button" onclick="window.print()">Print</button>
     </div>
-    <div class="sig-block">
-      <input type="text" class="sig-input" placeholder="Type name here">
-      <div class="sig-label">Reviewed by:</div>
+
+    <!-- TABLE -->
+    <table id="pr-table">
+      <thead>
+        <tr>
+          <th>ITEM #</th>
+          <th>DESCRIPTION</th>
+          <th>QUANTITY</th>
+          <th>UNIT</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text"></td>
+          <td><textarea></textarea></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+          <td><button class="action-btn" onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- PURPOSE -->
+    <div class="purpose">
+      <label>PURPOSE:</label>
+      <textarea placeholder="Enter purpose here..."></textarea>
     </div>
-    <div class="sig-block">
-      <input type="text" class="sig-input" placeholder="Type name here">
-      <div class="sig-label">Approved by:</div>
+
+    <!-- SIGNATURES -->
+    <div class="signatures">
+      <div class="sig-block">
+        <input type="text" class="sig-input" placeholder="Type name here">
+        <div class="sig-label">Requested by:</div>
+      </div>
+      <div class="sig-block">
+        <input type="text" class="sig-input" placeholder="Type name here">
+        <div class="sig-label">Reviewed by:</div>
+      </div>
+      <div class="sig-block">
+        <input type="text" class="sig-input" placeholder="Type name here">
+        <div class="sig-label">Approved by:</div>
+      </div>
     </div>
   </div>
 
