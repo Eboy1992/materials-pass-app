@@ -10,10 +10,11 @@
       background: #f4f6f9;
       margin: 0;
       padding: 0;
+      overflow-x: auto; /* Allow horizontal scrolling if needed */
     }
     .form-container {
       background: white;
-      max-width: 960px;
+      width: 960px; /* Fixed width to ensure desktop-like view */
       margin: 20px auto;
       padding: 20px 30px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -76,21 +77,13 @@
       .actions, button { display: none !important; }
       input, textarea { border: none; }
     }
-
-    /* Force desktop-like appearance on mobile */
+    /* Ensures that content does not break or deform on smaller screens */
     @media only screen and (max-width: 768px) {
+      body {
+        overflow-x: auto; /* Horizontal scrolling for mobile if needed */
+      }
       .form-container {
-        width: 960px; /* Fix the container width */
-        margin: 20px auto;
-      }
-      table {
-        table-layout: fixed; /* Make sure the columns remain fixed */
-      }
-      th, td {
-        word-wrap: break-word;
-      }
-      .actions button {
-        padding: 10px 20px;
+        width: 960px; /* Maintain desktop-like width */
       }
     }
   </style>
