@@ -188,11 +188,11 @@
   <table>
     <thead>
       <tr>
-        <th>Item #</th>
+        <th style="width: 80px;">Item #</th>
         <th style="width: 60%;">Description</th>
-        <th>Quantity</th>
+        <th style="width: 100px;">Quantity</th>
         <th>Unit</th>
-        <th>Action</th>
+        <th style="width: 100px;">Action</th>
       </tr>
     </thead>
     <tbody id="pr-table"></tbody>
@@ -231,4 +231,18 @@
       <td><input type="text" style="width: 100%;"></td>
       <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
     `;
-    documen
+    document.getElementById('pr-table').appendChild(row);
+  }
+
+  function deleteRow(button) {
+    button.closest('tr').remove();
+  }
+
+  // Add 5 default rows
+  for (let i = 0; i < 5; i++) {
+    addRow();
+  }
+</script>
+
+</body>
+</html>
