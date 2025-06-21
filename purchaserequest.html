@@ -21,44 +21,51 @@
       border-radius: 10px;
     }
 
-    .header-section {
-      text-align: center;
-    }
-
-    .header-section img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .top-row {
+    .form-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
-    .form-title-right {
+    .form-header .right {
       text-align: right;
     }
 
-    .form-title-right h2 {
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    .form-title-right label {
+    .form-header .right label {
       display: block;
       font-weight: bold;
-      margin-top: 10px;
-      margin-bottom: 4px;
+      margin-top: 8px;
     }
 
-    .form-title-right input {
+    .form-header .right input {
       padding: 6px;
       width: 180px;
-      border: 1px solid #ccc;
+      margin-top: 2px;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .actions {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+
+    .actions button {
+      background-color: #0066cc;
+      color: white;
+      padding: 10px 16px;
+      border: none;
       border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .actions button:hover {
+      background-color: #004999;
     }
 
     table {
@@ -88,35 +95,8 @@
     }
 
     textarea {
+      width: 100%;
       resize: vertical;
-    }
-
-    .actions {
-      text-align: right;
-      margin-bottom: 20px;
-    }
-
-    .actions button {
-      background-color: #0066cc;
-      color: white;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    .actions button:hover {
-      background-color: #004999;
-    }
-
-    .delete-btn {
-      background-color: #cc0000;
-      color: white;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 4px;
-      cursor: pointer;
     }
 
     .purpose-section {
@@ -167,21 +147,30 @@
 
 <div class="form-container">
 
-  <!-- Header Logo -->
-  <div class="header-section">
-    <img src="header.png" alt="Fecient Header" />
+  <!-- Logo -->
+  <div style="text-align: center;">
+    <img src="header.png" alt="Fecient Header" style="max-width: 100%; height: auto;" />
   </div>
 
-  <!-- Top Right Form Title and Info -->
-  <div class="top-row">
-    <div></div> <!-- Left spacer -->
-    <div class="form-title-right">
-      <h2>PURCHASE REQUISITION FORM</h2>
-      <label for="prno">PR No.:</label>
-      <input id="prno" type="text" placeholder="Enter PR No.">
-      <label for="prdate">Date:</label>
-      <input id="prdate" type="date">
+ <!-- Title -->
+  <h2>PURCHASE REQUISITION FORM</h2>
+  
+  <!-- PR No. and Date -->
+  <div class="form-header">
+    <div></div> <!-- spacer -->
+    <div class="right">
+      <label>PR No.:</label>
+      <input type="text" placeholder="Enter PR No.">
+      <label>Date:</label>
+      <input type="date">
     </div>
+  </div>
+
+
+  <!-- Buttons -->
+  <div class="actions">
+    <button onclick="addRow()">Add Row</button>
+    <button onclick="window.print()">Print</button>
   </div>
 
   <!-- Table -->
@@ -189,20 +178,14 @@
     <thead>
       <tr>
         <th style="width: 80px;">Item #</th>
-        <th style="width: 60%;">Description</th>
+        <th style="width: 50%;">Description</th>
         <th style="width: 100px;">Quantity</th>
         <th>Unit</th>
-        <th style="width: 100px;">Action</th>
+        <th class="actions">Action</th>
       </tr>
     </thead>
     <tbody id="pr-table"></tbody>
   </table>
-
-  <!-- Action Buttons -->
-  <div class="actions">
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="window.print()">Print</button>
-  </div>
 
   <!-- Purpose -->
   <div class="purpose-section">
@@ -210,7 +193,7 @@
     <textarea placeholder="Enter purpose here..."></textarea>
   </div>
 
-  <!-- Signatures -->
+  <!-- Signature -->
   <table class="signature-table">
     <tr>
       <td>Requested by:<br><input type="text"><br><br></td>
@@ -225,23 +208,16 @@
   function addRow() {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td><input type="text" style="width: 100%;"></td>
-      <td><textarea rows="2" style="width: 100%;"></textarea></td>
-      <td><input type="number" min="0" style="width: 100%;"></td>
-      <td><input type="text" style="width: 100%;"></td>
-      <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+      <td><input type="text" style="width: 80px;"></td>
+      <td><textarea rows="2"></textarea></td>
+      <td><input type="number" min="0" style="width: 80px;"></td>
+      <td><input type="text"></td>
+      <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
     `;
     document.getElementById('pr-table').appendChild(row);
   }
 
-  function deleteRow(button) {
-    button.closest('tr').remove();
-  }
-
-  // Add 5 default rows
-  for (let i = 0; i < 5; i++) {
-    addRow();
-  }
+  for (let i = 0; i < 5; i++) addRow();
 </script>
 
 </body>
