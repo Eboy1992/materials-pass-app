@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Materials Pass Menu</title>
   <style>
     body {
@@ -45,14 +45,20 @@
       transform: translateY(-2px);
     }
 
+    .nav-button.active {
+      background-color: #002244;
+      box-shadow: inset 0 0 0 3px #66ccff;
+    }
+
     iframe {
       width: 100%;
       height: 90vh;
       border: none;
+      display: none; /* Hide by default */
     }
 
     .back-button {
-      display: none;
+      display: none; /* Hide by default */
       background-color: #cc0000;
       color: white;
       padding: 12px 24px;
@@ -62,11 +68,17 @@
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      text-align: center;
     }
 
     .back-button:hover {
       background-color: #990000;
       transform: translateY(-2px);
+    }
+
+    .back-container {
+      text-align: center;
     }
   </style>
   <script>
@@ -76,6 +88,7 @@
       if (input !== password) {
         alert("Access denied!");
         document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Unauthorized Access</h2>";
+        return;
       }
 
       const navButtons = document.querySelectorAll('.nav-button');
@@ -84,33 +97,37 @@
       const navBar = document.querySelector('nav');
 
       navButtons.forEach(button => {
-        button.addEventListener('click', function () {
-          // Hide all navigation buttons
-          navButtons.forEach(btn => btn.style.display = 'none');
-          
-          // Show the "Back" button
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          // Hide all buttons and remove active class
+          navButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.display = 'none';
+          });
+
+          // Set active on clicked
+          this.classList.add('active');
+
+          // Show back button and iframe
           backButton.style.display = 'inline-block';
-
-          // Hide the navigation bar
           navBar.style.display = 'none';
-
-          // Change the iframe content based on the selected link
+          iframe.style.display = 'block';
           iframe.src = this.getAttribute('href');
         });
       });
 
       backButton.addEventListener('click', function () {
-        // Show the navigation buttons again
-        navButtons.forEach(btn => btn.style.display = 'inline-block');
+        // Show buttons again
+        navButtons.forEach(btn => {
+          btn.style.display = 'inline-block';
+          btn.classList.remove('active');
+        });
 
-        // Hide the "Back" button
-        backButton.style.display = 'none';
-
-        // Show the navigation bar
         navBar.style.display = 'flex';
-
-        // Reset the iframe to the default page (or you can leave it as is)
+        iframe.style.display = 'none';
         iframe.src = "";
+        backButton.style.display = 'none';
       });
     };
   </script>
@@ -127,9 +144,11 @@
   <a class="nav-button" href="purchaserequest.html" target="frame">Purchase Request</a>
 </nav>
 
-<button class="back-button">Back to Choose a Form</button>
+<div class="back-container">
+  <button class="back-button">Back to Choose a Form</button>
+</div>
 
-<iframe name="frame" src="pullout.html"></iframe>
+<iframe name="frame"></iframe>
 
 </body>
 </html>
