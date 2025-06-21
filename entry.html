@@ -10,13 +10,14 @@
       background: #f4f6f9;
       margin: 0;
       padding: 0;
-      overflow-x: auto; /* Allow horizontal scrolling if needed */
+      box-sizing: border-box;
     }
     .form-container {
       background: white;
-      width: 960px; /* Fixed width to ensure desktop-like view */
+      width: 100%; /* Full width to fit on mobile screens */
+      max-width: 960px; /* Keep a max-width for desktop view */
       margin: 20px auto;
-      padding: 20px 30px;
+      padding: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     img.header-img {
@@ -77,13 +78,17 @@
       .actions, button { display: none !important; }
       input, textarea { border: none; }
     }
-    /* Ensures that content does not break or deform on smaller screens */
+    /* Ensure the form adjusts on mobile screens */
     @media only screen and (max-width: 768px) {
-      body {
-        overflow-x: auto; /* Horizontal scrolling for mobile if needed */
-      }
       .form-container {
-        width: 960px; /* Maintain desktop-like width */
+        width: 100%; /* Full width for mobile */
+        padding: 10px; /* Reduce padding for smaller screens */
+      }
+      table, th, td {
+        font-size: 14px; /* Adjust font size */
+      }
+      .actions button {
+        padding: 10px 15px; /* Adjust button size for mobile */
       }
     }
   </style>
