@@ -59,6 +59,20 @@
         alert("Access denied!");
         document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Unauthorized Access</h2>";
       }
+
+      // Adding functionality to hide other links once one is clicked
+      const navButtons = document.querySelectorAll('.nav-button');
+      const iframe = document.querySelector('iframe');
+
+      navButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          // Hide all other buttons
+          navButtons.forEach(btn => btn.style.display = 'none');
+          
+          // Show the iframe content based on the clicked link
+          iframe.src = this.getAttribute('href'); // Dynamically change the iframe src
+        });
+      });
     };
   </script>
 </head>
