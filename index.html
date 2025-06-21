@@ -50,6 +50,24 @@
       height: 90vh;
       border: none;
     }
+
+    .back-button {
+      display: none;
+      background-color: #cc0000;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-button:hover {
+      background-color: #990000;
+      transform: translateY(-2px);
+    }
   </style>
   <script>
     window.onload = function () {
@@ -60,18 +78,39 @@
         document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Unauthorized Access</h2>";
       }
 
-      // Adding functionality to hide other links once one is clicked
       const navButtons = document.querySelectorAll('.nav-button');
       const iframe = document.querySelector('iframe');
+      const backButton = document.querySelector('.back-button');
+      const navBar = document.querySelector('nav');
 
       navButtons.forEach(button => {
         button.addEventListener('click', function () {
-          // Hide all other buttons
+          // Hide all navigation buttons
           navButtons.forEach(btn => btn.style.display = 'none');
           
-          // Show the iframe content based on the clicked link
-          iframe.src = this.getAttribute('href'); // Dynamically change the iframe src
+          // Show the "Back" button
+          backButton.style.display = 'inline-block';
+
+          // Hide the navigation bar
+          navBar.style.display = 'none';
+
+          // Change the iframe content based on the selected link
+          iframe.src = this.getAttribute('href');
         });
+      });
+
+      backButton.addEventListener('click', function () {
+        // Show the navigation buttons again
+        navButtons.forEach(btn => btn.style.display = 'inline-block');
+
+        // Hide the "Back" button
+        backButton.style.display = 'none';
+
+        // Show the navigation bar
+        navBar.style.display = 'flex';
+
+        // Reset the iframe to the default page (or you can leave it as is)
+        iframe.src = "";
       });
     };
   </script>
@@ -87,6 +126,8 @@
   <a class="nav-button" href="entry.html" target="frame">Entry Pass</a>
   <a class="nav-button" href="purchaserequest.html" target="frame">Purchase Request</a>
 </nav>
+
+<button class="back-button">Back to Choose a Form</button>
 
 <iframe name="frame" src="pullout.html"></iframe>
 
