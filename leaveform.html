@@ -14,7 +14,7 @@
             justify-content: center;
             align-items: flex-start;
             height: 100vh;
-            overflow-x: hidden;
+            overflow-y: auto; /* Make the main page scrollable */
         }
 
         .form-container {
@@ -26,8 +26,7 @@
             box-sizing: border-box;
             position: relative;
             top: 70px; /* Adjust to ensure space for the header */
-            overflow-y: auto; /* Allow scrolling of the form */
-            height: 80vh; /* Make sure form fits into the screen */
+            height: auto; /* Allow the form container to grow based on its content */
         }
 
         img.header-img {
