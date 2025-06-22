@@ -80,6 +80,36 @@
     .back-container {
       text-align: center;
     }
+
+    /* New Section for Images */
+    .efficiency-banner {
+      text-align: center;
+      margin: 40px 0; /* Added margin for space */
+      display: block; /* Visible initially */
+    }
+
+    .efficiency-banner img {
+      width: 60%; /* Adjust as needed */
+      max-width: 600px;
+    }
+
+    .company-logo {
+      text-align: center;
+      margin: 40px 0; /* Added margin for space */
+      display: block; /* Visible initially */
+    }
+
+    .company-logo img {
+      width: 60%; /* Adjust as needed */
+      max-width: 600px;
+    }
+
+    /* Container for Logo, Centered Between the Buttons and Footer */
+    .logo-container {
+      text-align: center;
+      margin-top: 40px; /* Space before logo */
+      display: block; /* Make the logo visible initially */
+    }
   </style>
   <script>
     window.onload = function () {
@@ -95,10 +125,17 @@
       const iframe = document.querySelector('iframe');
       const backButton = document.querySelector('.back-button');
       const navBar = document.querySelector('nav');
+      const efficiencyBanner = document.querySelector('.efficiency-banner');
+      const companyLogo = document.querySelector('.company-logo');
+      const logoContainer = document.querySelector('.logo-container');
 
       navButtons.forEach(button => {
         button.addEventListener('click', function (e) {
           e.preventDefault();
+
+          // Hide the efficiency banner and logo once a button is clicked
+          efficiencyBanner.style.display = 'none';
+          companyLogo.style.display = 'none';
 
           // Hide all buttons and remove active class
           navButtons.forEach(btn => {
@@ -128,6 +165,10 @@
         iframe.style.display = 'none';
         iframe.src = "";
         backButton.style.display = 'none';
+
+        // Show the logo and efficiency banner when back is clicked
+        efficiencyBanner.style.display = 'block';
+        companyLogo.style.display = 'block';
       });
     };
   </script>
@@ -143,6 +184,19 @@
   <a class="nav-button" href="entry.html" target="frame">Entry Pass</a>
   <a class="nav-button" href="purchaserequest.html" target="frame">Purchase Request</a>
 </nav>
+
+<!-- Logo and Efficiency Images Positioned Between the Buttons and Footer -->
+<div class="logo-container">
+  <!-- Efficiency Image Section -->
+  <div class="efficiency-banner">
+    <img src="images/13abfb46-f5be-4ea1-bedc-37ba316d1680.png" alt="Efficiency Matters!">
+  </div>
+
+  <!-- Company Logo Section -->
+  <div class="company-logo">
+    <img src="images/5966ade1-ced1-4ec5-9e03-90d664489ec3.png" alt="Fecient Solutions Provider">
+  </div>
+</div>
 
 <div class="back-container">
   <button class="back-button">Back to Choose a Form</button>
