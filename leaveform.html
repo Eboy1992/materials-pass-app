@@ -12,8 +12,9 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
+            overflow-x: hidden;
         }
 
         .form-container {
@@ -23,6 +24,10 @@
             padding: 20px 30px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             box-sizing: border-box;
+            position: relative;
+            top: 70px; /* Adjust to ensure space for the header */
+            overflow-y: auto; /* Allow scrolling of the form */
+            height: 80vh; /* Make sure form fits into the screen */
         }
 
         img.header-img {
@@ -233,7 +238,7 @@
 <body>
 
     <div class="form-container">
-        <!-- Header Image (to be added later) -->
+        <!-- Header Image -->
         <img src="header.png" alt="Leave Form Header" class="header-img" />
 
         <h1>Leave Form</h1>
@@ -331,6 +336,7 @@
                         <input type="text" id="managementApprovalSignature" name="managementApprovalSignature" placeholder="Management's name" required>
                     </div>
                 </div>
+
             </div>
 
             <div class="actions">
