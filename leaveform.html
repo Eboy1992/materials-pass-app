@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leave Form</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f0f4f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f9;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,18 +17,18 @@
         }
 
         .form-container {
-            width: 100%;
-            max-width: 900px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            transition: transform 0.3s ease-in-out;
+            background: white;
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
             box-sizing: border-box;
         }
 
-        .form-container:hover {
-            transform: scale(1.02);
+        img.header-img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
         }
 
         h1 {
@@ -119,6 +119,25 @@
             text-decoration: underline;
         }
 
+        .actions {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .actions button {
+            padding: 8px 12px;
+            margin-left: 5px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background-color: #004c99;
+        }
+
         .signatories-section {
             margin-top: 30px;
             border-top: 2px solid #f0f0f0;
@@ -132,7 +151,6 @@
             margin-bottom: 20px;
         }
 
-        /* Flex container to align signatures side by side */
         .signature-container {
             display: flex;
             justify-content: space-between;
@@ -163,7 +181,6 @@
             border-radius: 5px;
         }
 
-        /* File input for signature upload */
         .upload-signature {
             margin-top: 10px;
             width: 100%;
@@ -177,14 +194,12 @@
             border-radius: 8px;
         }
 
-        /* Added margin-top to name input fields to provide space */
         .form-group input[name="supervisorSignature"],
         .form-group input[name="hrApprovalSignature"],
         .form-group input[name="managementApprovalSignature"] {
-            margin-top: 15px; /* Adds space above the name input fields */
+            margin-top: 15px;
         }
 
-        /* Mobile responsiveness */
         @media (max-width: 600px) {
             .form-row {
                 flex-direction: column;
@@ -201,7 +216,7 @@
             }
 
             .form-group .signature-pad {
-                height: 60px; /* Adjust height for mobile */
+                height: 60px;
             }
 
             .form-group input,
@@ -211,10 +226,6 @@
                 font-size: 14px;
                 padding: 10px 12px;
             }
-
-            .form-footer {
-                font-size: 10px;
-            }
         }
 
     </style>
@@ -222,9 +233,11 @@
 <body>
 
     <div class="form-container">
+        <!-- Header Image (to be added later) -->
+        <img src="header.png" alt="Leave Form Header" class="header-img" />
+
         <h1>Leave Form</h1>
         <form action="#" method="POST">
-            <!-- Date of Request Field -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="dateOfRequest">Date of Request</label>
@@ -318,10 +331,9 @@
                         <input type="text" id="managementApprovalSignature" name="managementApprovalSignature" placeholder="Management's name" required>
                     </div>
                 </div>
-
             </div>
 
-            <div class="form-group">
+            <div class="actions">
                 <button type="submit">Submit Leave Request</button>
             </div>
         </form>
