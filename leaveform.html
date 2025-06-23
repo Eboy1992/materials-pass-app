@@ -1,374 +1,369 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leave Form</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f6f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
-            overflow-y: auto; /* Make the main page scrollable */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      overflow-y: auto;
+    }
 
-        .form-container {
-            background: white;
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            box-sizing: border-box;
-            position: relative;
-            top: 70px; /* Adjust to ensure space for the header */
-            height: auto; /* Allow the form container to grow based on its content */
-        }
+    .form-container {
+      background: white;
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 20px 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      position: relative;
+      top: 70px;
+      height: auto;
+    }
 
-        img.header-img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-            position: relative; /* Ensure it's positioned relative to its container */
-            z-index: 10; /* Bring the image to the front */
-        }
+    img.header-img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 10;
+    }
 
-        h1 {
-            text-align: center;
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 30px;
-        }
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 30px;
+    }
 
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
 
-        .form-group {
-            flex: 1;
-            min-width: 45%;
-        }
+    .form-group {
+      flex: 1;
+      min-width: 45%;
+    }
 
-        .form-group label {
-            font-size: 14px;
-            color: #444;
-            font-weight: bold;
-            margin-bottom: 8px;
-            display: block;
-        }
+    .form-group label {
+      font-size: 14px;
+      color: #444;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+    }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #4CAF50;
-            outline: none;
-        }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
 
-        .form-group button {
-            width: 100%;
-            padding: 14px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    .form-group button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-        .form-group button:hover {
-            background-color: #45a049;
-        }
+    .form-group button:hover {
+      background-color: #45a049;
+    }
 
-        .form-group button:active {
-            background-color: #3e8e41;
-        }
+    .form-group button:active {
+      background-color: #3e8e41;
+    }
 
-        .form-footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-        }
+    .form-footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 20px;
+    }
 
-        .form-footer a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .form-footer a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
 
-        .actions {
-            text-align: center;
-            margin: 10px 0;
-        }
+    .actions {
+      text-align: center;
+      margin: 10px 0;
+    }
 
-        .actions button {
-            padding: 8px 12px;
-            margin-left: 5px;
-            background: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    .actions button {
+      padding: 8px 12px;
+      margin-left: 5px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-        .actions button:hover {
-            background-color: #004c99;
-        }
+    .actions button:hover {
+      background-color: #004c99;
+    }
 
-        .signatories-section {
-            margin-top: 30px;
-            border-top: 2px solid #f0f0f0;
-            padding-top: 20px;
-        }
+    .signatories-section {
+      margin-top: 30px;
+      border-top: 2px solid #f0f0f0;
+      padding-top: 20px;
+    }
 
-        .signatories-section h2 {
-            font-size: 20px;
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .signatories-section h2 {
+      font-size: 20px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        .signature-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+    .signature-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
 
-        .form-group .signature-pad {
-            border: 2px solid #ccc;
-            width: 100%;
-            height: 80px; /* Resized height for a more compact form */
-            border-radius: 8px;
-            margin-top: 10px;
-            position: relative;
-            max-width: 100%;
-        }
+    .form-group .signature-pad {
+      border: 2px solid #ccc;
+      width: 100%;
+      height: 80px;
+      border-radius: 8px;
+      margin-top: 10px;
+      position: relative;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-        .clear-signature {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    .upload-signature {
+      margin-top: 10px;
+      width: 100%;
+    }
 
-        .upload-signature {
-            margin-top: 10px;
-            width: 100%;
-        }
+    .upload-signature input {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
 
-        .upload-signature input {
-            width: 100%;
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+    .form-group input[name="supervisorSignature"],
+    .form-group input[name="hrApprovalSignature"],
+    .form-group input[name="managementApprovalSignature"] {
+      margin-top: 15px;
+    }
 
-        .form-group input[name="supervisorSignature"],
-        .form-group input[name="hrApprovalSignature"],
-        .form-group input[name="managementApprovalSignature"] {
-            margin-top: 15px;
-        }
+    @media (max-width: 600px) {
+      .form-row {
+        flex-direction: column;
+        gap: 10px;
+      }
 
-        @media (max-width: 600px) {
-            .form-row {
-                flex-direction: column;
-                gap: 10px;
-            }
+      .form-group {
+        min-width: 100%;
+      }
 
-            .form-group {
-                min-width: 100%;
-            }
+      .signature-container {
+        flex-direction: column;
+        gap: 15px;
+      }
 
-            .signature-container {
-                flex-direction: column;
-                gap: 15px;
-            }
+      .form-group .signature-pad {
+        height: 60px;
+      }
 
-            .form-group .signature-pad {
-                height: 60px;
-            }
+      .form-group input,
+      .form-group select,
+      .form-group textarea,
+      .form-group button {
+        font-size: 14px;
+        padding: 10px 12px;
+      }
+    }
 
-            .form-group input,
-            .form-group select,
-            .form-group textarea,
-            .form-group button {
-                font-size: 14px;
-                padding: 10px 12px;
-            }
-        }
-
-    </style>
+    @media print {
+      .form-footer,
+      .actions {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="form-container">
-        <!-- Header Image -->
-        <img src="header.png" alt="Leave Form Header" class="header-img" />
-
-        <h1>Leave Form</h1>
-        <form action="#" method="POST">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="dateOfRequest">Date of Request</label>
-                    <input type="date" id="dateOfRequest" name="dateOfRequest" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="employeeName">Employee Name</label>
-                    <input type="text" id="employeeName" name="employeeName" placeholder="Enter your name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="employeeID">Employee ID</label>
-                    <input type="text" id="employeeID" name="employeeID" placeholder="Enter your employee ID" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="leaveType">Type of Leave</label>
-                    <select id="leaveType" name="leaveType" required>
-                        <option value="">Select Leave Type</option>
-                        <option value="sickLeave">Sick Leave</option>
-                        <option value="vacationLeave">Vacation Leave</option>
-                        <option value="maternityLeave">Maternity Leave</option>
-                        <option value="paternityLeave">Paternity Leave</option>
-                        <option value="soloParentLeave">Solo Parent Leave</option>
-                        <option value="specialLeave">Special Leave for Women</option>
-                        <option value="bereavementLeave">Bereavement Leave</option>
-                        <option value="sabbaticalLeave">Sabbatical Leave</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="leaveStartDate">Start Date of Leave</label>
-                    <input type="date" id="leaveStartDate" name="leaveStartDate" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="leaveEndDate">End Date of Leave</label>
-                    <input type="date" id="leaveEndDate" name="leaveEndDate" required>
-                </div>
-            </div>
-
-            <div class="form-row reason-group">
-                <div class="form-group">
-                    <label for="leaveReason">Reason for Leave</label>
-                    <textarea id="leaveReason" name="leaveReason" placeholder="Enter the reason for your leave" required></textarea>
-                </div>
-            </div>
-
-            <div class="signatories-section">
-                <h2>Signatories and Approval</h2>
-
-                <!-- Signatures side by side: Employee Signature, Immediate Supervisor Signature, HR, and Management -->
-                <div class="signature-container">
-                    <!-- Employee Signature -->
-                    <div class="form-group">
-                        <label for="employeeSignature">Employee Signature</label>
-                        <div class="signature-pad" id="employeeSignaturePad">
-                            <button type="button" class="clear-signature" onclick="clearSignature('employeeSignaturePad')">Clear</button>
-                        </div>
-                        <input type="hidden" name="employeeSignature" id="employeeSignatureHidden">
-                        <div class="upload-signature">
-                            <label for="employeeSignatureUpload">Or upload signature</label>
-                            <input type="file" id="employeeSignatureUpload" name="employeeSignatureUpload" accept="image/*">
-                        </div>
-                    </div>
-
-                    <!-- Immediate Supervisor Signature (name input only) -->
-                    <div class="form-group">
-                        <label for="supervisorSignature">Immediate Supervisor</label>
-                        <input type="text" id="supervisorSignature" name="supervisorSignature" placeholder="Supervisor's name" required>
-                    </div>
-                </div>
-
-                <div class="signature-container">
-                    <!-- HR Approval Signature (name input only) -->
-                    <div class="form-group">
-                        <label for="hrApprovalSignature">HR Approval</label>
-                        <input type="text" id="hrApprovalSignature" name="hrApprovalSignature" placeholder="HR's name" required>
-                    </div>
-
-                    <!-- Management Approval Signature (name input only) -->
-                    <div class="form-group">
-                        <label for="managementApprovalSignature">Management Approval</label>
-                        <input type="text" id="managementApprovalSignature" name="managementApprovalSignature" placeholder="Management's name" required>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="actions">
-                <button type="submit">Submit Leave Request</button>
-            </div>
-        </form>
-
-        <div class="form-footer">
-            <p>Need help? <a href="#">Contact HR</a></p>
+  <div class="form-container">
+    <img src="header.png" alt="Leave Form Header" class="header-img" />
+    <h1>Leave Form</h1>
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateOfRequest">Date of Request</label>
+          <input type="date" id="dateOfRequest" required>
         </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="employeeName">Employee Name</label>
+          <input type="text" id="employeeName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="employeeID">Employee ID</label>
+          <input type="text" id="employeeID" placeholder="Enter your employee ID" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="leaveType">Type of Leave</label>
+          <select id="leaveType" required>
+            <option value="">Select Leave Type</option>
+            <option value="sickLeave">Sick Leave</option>
+            <option value="vacationLeave">Vacation Leave</option>
+            <option value="maternityLeave">Maternity Leave</option>
+            <option value="paternityLeave">Paternity Leave</option>
+            <option value="soloParentLeave">Solo Parent Leave</option>
+            <option value="specialLeave">Special Leave for Women</option>
+            <option value="bereavementLeave">Bereavement Leave</option>
+            <option value="sabbaticalLeave">Sabbatical Leave</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="leaveStartDate">Start Date of Leave</label>
+          <input type="date" id="leaveStartDate" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="leaveEndDate">End Date of Leave</label>
+          <input type="date" id="leaveEndDate" required>
+        </div>
+      </div>
+
+      <div class="form-row reason-group">
+        <div class="form-group">
+          <label for="leaveReason">Reason for Leave</label>
+          <textarea id="leaveReason" placeholder="Enter the reason for your leave" required></textarea>
+        </div>
+      </div>
+
+      <div class="signatories-section">
+        <h2>Signatories and Approval</h2>
+        <div class="signature-container">
+          <div class="form-group" id="employeeSignatureGroup">
+            <label for="employeeSignature">Employee Signature</label>
+            <div class="signature-pad" id="employeeSignaturePad"></div>
+            <input type="hidden" id="employeeSignatureHidden">
+            <div class="upload-signature">
+              <label for="employeeSignatureUpload">Or upload signature</label>
+              <input type="file" id="employeeSignatureUpload" accept="image/*">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="supervisorSignature">Immediate Supervisor</label>
+            <input type="text" id="supervisorSignature" placeholder="Supervisor's name" required>
+          </div>
+        </div>
+
+        <div class="signature-container">
+          <div class="form-group">
+            <label for="hrApprovalSignature">HR Approval</label>
+            <input type="text" id="hrApprovalSignature" placeholder="HR's name" required>
+          </div>
+          <div class="form-group">
+            <label for="managementApprovalSignature">Management Approval</label>
+            <input type="text" id="managementApprovalSignature" placeholder="Management's name" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" onclick="prepareAndPrint()">Print PDF</button>
+      </div>
+    </form>
+
+    <div class="form-footer">
+      <p>Need help? <a href="#">Contact HR</a></p>
     </div>
+  </div>
 
-    <script>
-        // Signature canvas initialization
-        function clearSignature(canvasId) {
-            var signaturePad = document.getElementById(canvasId);
-            signaturePad.getContext("2d").clearRect(0, 0, signaturePad.width, signaturePad.height);
-        }
+  <script>
+    const employeeSignatureUpload = document.getElementById("employeeSignatureUpload");
+    const employeeSignaturePad = document.getElementById("employeeSignaturePad");
 
-        // To capture the signature data as base64 encoded string and store it in hidden input fields
-        function captureSignature(canvasId, hiddenInputId) {
-            var signaturePad = document.getElementById(canvasId);
-            var signatureData = signaturePad.toDataURL();
-            document.getElementById(hiddenInputId).value = signatureData;
-        }
+    employeeSignatureUpload.addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          employeeSignaturePad.innerHTML = `<img src="${e.target.result}" style="max-height: 80px; max-width: 100%; object-fit: contain;">`;
+          employeeSignaturePad.setAttribute("data-has-image", "true");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        employeeSignaturePad.innerHTML = "";
+        employeeSignaturePad.removeAttribute("data-has-image");
+      }
+    });
 
-        // Add event listeners to capture signatures before submitting the form
-        document.querySelector("form").addEventListener("submit", function (event) {
-            captureSignature("employeeSignaturePad", "employeeSignatureHidden");
-        });
-    </script>
+    function prepareAndPrint() {
+      const sigGroup = document.getElementById("employeeSignatureGroup");
+      const sigImg = employeeSignaturePad.querySelector("img");
 
+      if (!sigImg) {
+        sigGroup.style.display = "none";
+      }
+
+      window.print();
+
+      setTimeout(() => {
+        sigGroup.style.display = "";
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
