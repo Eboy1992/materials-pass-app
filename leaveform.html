@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -140,6 +140,15 @@
       margin-top: 15px;
     }
 
+    .form-footer a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+
     @media print {
       @page {
         margin: 5mm;
@@ -168,12 +177,26 @@
 <body>
   <div class="form-container">
     <img src="header.png" alt="Leave Form Header" class="header-img" />
-    <h1>Leave Form</h1>
+    <h1>LEAVE FORM</h1>
     <form>
       <div class="form-row">
         <div class="form-group">
           <label for="dateOfRequest">Date of Request</label>
           <input type="date" id="dateOfRequest" required />
+        </div>
+        <div class="form-group">
+          <label for="leaveType">Type of Leave</label>
+          <input list="leaveOptions" id="leaveType" name="leaveType" required />
+          <datalist id="leaveOptions">
+            <option value="Sick">
+            <option value="Vacation">
+            <option value="Maternity">
+            <option value="Paternity">
+            <option value="Solo Parent">
+            <option value="Special (Women)">
+            <option value="Bereavement">
+            <option value="Sabbatical">
+          </datalist>
         </div>
       </div>
 
@@ -190,26 +213,9 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label for="leaveType">Type of Leave</label>
-          <select id="leaveType" required>
-            <option value="">Select</option>
-            <option value="sickLeave">Sick</option>
-            <option value="vacationLeave">Vacation</option>
-            <option value="maternityLeave">Maternity</option>
-            <option value="paternityLeave">Paternity</option>
-            <option value="soloParentLeave">Solo Parent</option>
-            <option value="specialLeave">Special (Women)</option>
-            <option value="bereavementLeave">Bereavement</option>
-            <option value="sabbaticalLeave">Sabbatical</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label for="leaveStartDate">Start Date</label>
           <input type="date" id="leaveStartDate" required />
         </div>
-      </div>
-
-      <div class="form-row">
         <div class="form-group">
           <label for="leaveEndDate">End Date</label>
           <input type="date" id="leaveEndDate" required />
@@ -224,7 +230,7 @@
       </div>
 
       <div class="signatories-section">
-        <h2>Signatories</h2>
+        <h2>SIGNATORIES</h2>
         <div class="signature-container">
           <div class="form-group" style="flex: 1">
             <label for="employeeSignature">Employee</label>
@@ -258,7 +264,12 @@
     </form>
 
     <div class="form-footer">
-      <p>Need help? Contact HR</p>
+      <p>
+        Need help? Contact HR:
+        <br />
+        <a href="https://www.facebook.com/share/16eZpQwaT4/" target="_blank">📩 Messenger</a> |
+        📱 <a href="tel:09917195297">09917195297</a>
+      </p>
     </div>
   </div>
 
