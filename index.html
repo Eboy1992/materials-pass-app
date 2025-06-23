@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>Materials Pass Menu</title>
   <style>
     body {
@@ -16,14 +16,12 @@
       background-color: #003066;
       color: white;
       text-align: center;
-      padding: 15px;
-      border-radius: 4px;
-      
-
+      padding: 12px;
     }
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
       background: #e0e0e0;
@@ -33,14 +31,16 @@
     .nav-button {
       background-color: #cc0000;
       color: white;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.3s ease, transform 0.2s ease;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex: 1 1 140px;
+      text-align: center;
     }
 
     .nav-button:hover {
@@ -55,13 +55,13 @@
 
     iframe {
       width: 100%;
-      height: 90vh;
+      height: 85vh;
       border: none;
-      display: none; /* Hide by default */
+      display: none;
     }
 
     .back-button {
-      display: none; /* Hide by default */
+      display: none;
       background-color: #cc0000;
       color: white;
       padding: 12px 24px;
@@ -72,7 +72,6 @@
       transition: background-color 0.3s ease, transform 0.2s ease;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       margin: 10px auto;
-      text-align: center;
     }
 
     .back-button:hover {
@@ -82,39 +81,39 @@
 
     .back-container {
       text-align: center;
-      margin-top: -40px; /* Removed space from header */
+      margin-top: -20px;
     }
 
-    /* New Section for Images */
-    .efficiency-banner {
-      text-align: center;
-      margin: 40px 0; /* Added margin for space */
-      display: block; /* Visible initially */    
-    }
-
-    .efficiency-banner img {
-      width: 100%; /* Adjust as needed */
-      max-width: 1000px;
-      border-radius: 8px;
-    }
-
-    .company-logo {
-      text-align: center;
-      margin: 40px auto;
-      display: block;
-    }
-
-    .company-logo img {
-      width: 100%; /* Adjust as needed */
-      max-width: 1000px;
-      border-radius: 8px;
-    }
-
-    /* Container for Logo, Centered Between the Buttons and Footer */
+    .efficiency-banner,
+    .company-logo,
     .logo-container {
       text-align: center;
-      margin-top: 40px; /* Space before logo */
-      display: block; /* Make the logo visible initially */
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+
+    .efficiency-banner img,
+    .company-logo img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 480px) {
+      .nav-button {
+        padding: 10px;
+        font-size: 14px;
+        flex: 1 1 100%;
+      }
+
+      header h1 {
+        font-size: 18px;
+        padding: 10px;
+      }
+
+      iframe {
+        height: 80vh;
+      }
     }
   </style>
   <script>
@@ -133,26 +132,20 @@
       const navBar = document.querySelector('nav');
       const efficiencyBanner = document.querySelector('.efficiency-banner');
       const companyLogo = document.querySelector('.company-logo');
-      const logoContainer = document.querySelector('.logo-container');
 
       navButtons.forEach(button => {
         button.addEventListener('click', function (e) {
           e.preventDefault();
 
-          // Hide the efficiency banner and logo once a button is clicked
           efficiencyBanner.style.display = 'none';
           companyLogo.style.display = 'none';
 
-          // Hide all buttons and remove active class
           navButtons.forEach(btn => {
             btn.classList.remove('active');
             btn.style.display = 'none';
           });
 
-          // Set active on clicked
           this.classList.add('active');
-
-          // Show back button and iframe
           backButton.style.display = 'inline-block';
           navBar.style.display = 'none';
           iframe.style.display = 'block';
@@ -161,7 +154,6 @@
       });
 
       backButton.addEventListener('click', function () {
-        // Show buttons again
         navButtons.forEach(btn => {
           btn.style.display = 'inline-block';
           btn.classList.remove('active');
@@ -172,7 +164,6 @@
         iframe.src = "";
         backButton.style.display = 'none';
 
-        // Show the logo and efficiency banner when back is clicked
         efficiencyBanner.style.display = 'block';
         companyLogo.style.display = 'block';
       });
@@ -192,14 +183,10 @@
   <a class="nav-button" href="leaveform.html" target="frame">Leave Form</a>
 </nav>
 
-<!-- Logo and Efficiency Images Positioned Between the Buttons and Footer -->
 <div class="logo-container">
-  <!-- Efficiency Image Section -->
   <div class="efficiency-banner">
     <img src="images/logo1.png" alt="Efficiency Matters!">
   </div>
-
-  <!-- Company Logo Section -->
   <div class="company-logo">
     <img src="images/logo2.png" alt="Fecient Solutions Provider">
   </div>
@@ -213,3 +200,4 @@
 
 </body>
 </html>
+
