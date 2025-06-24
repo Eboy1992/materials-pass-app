@@ -1,1 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TRANSMITTAL SHEET</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      background: white;
+      max-width: 960px;
+      margin: 5px auto;
+      padding: 10px 15px;
+    }
+
+    img.header-img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      text-align: right;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 4px;
+      border: none;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .no-border td {
+      border: none !important;
+      padding: 4px;
+    }
+
+    .actions {
+      text-align: right;
+      margin: 5px 0 15px 0;
+    }
+
+    .actions button {
+      padding: 6px 10px;
+      margin-left: 5px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      background-color: #004c99;
+    }
+
+    .italic {
+      font-style: italic;
+      text-align: center;
+    }
+
+    @media print {
+      .actions, button {
+        display: none !important;
+      }
+
+      input, textarea {
+        border: none;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .form-container {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <!-- Header image -->
+    <img src="header.png" alt="Company Header" class="header-img" />
+
+    <!-- Form title -->
+    <h2>TRANSMITTAL SHEET</h2>
+
+    <!-- Info fields -->
+    <table>
+      <tr>
+        <td style="width: 100px;"><strong>DATE:</strong></td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td><strong>COMPANY:</strong></td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td><strong>ADDRESS:</strong></td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td><strong>ATTENTION:</strong></td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td><strong>SUBJECT:</strong></td>
+        <td><input type="text" /></td>
+      </tr>
+    </table>
+
+    <!-- Intro paragraph -->
+    <p>Sir / Ma’am,</p>
+    <p>We transmit the following item/s:</p>
+
+    <!-- Buttons -->
+    <div class="actions">
+      <button onclick="addRow()">Add Row</button>
+      <button onclick="window.print()">Print</button>
+    </div>
+
+    <!-- Item table -->
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">ITEM</th>
+          <th style="width: 60%;">DESCRIPTION</th>
+          <th style="width: 15%;">QNTY</th>
+          <th style="width: 10%;">UNIT</th>
+          <th class="actions" style="width: 5%;">Action</th>
+        </tr>
+      </thead>
+      <tbody id="entry-table"></tbody>
+    </table>
+
+    <!-- Footer signatures -->
+    <table class="no-border">
+      <tr>
+        <td>
+          <strong>Prepared by:</strong><br><br>
+          ___________________________<br>
+          FECIENT Solutions Provider<br>
+          Date: <input type="text" />
+        </td>
+        <td>
+          <strong>Received by:</strong><br><br>
+          ___________________________<br>
+          Signature over printed name<br>
+          Date: <input type="text" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function addRow() {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><input type="text" /></td>
+        <td><textarea rows="2"></textarea></td>
+        <td><input type="number" min="0" /></td>
+        <td><input type="text" /></td>
+        <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
+      `;
+      document.getElementById("entry-table").appendChild(row);
+    }
+
+    // Default 10 rows
+    for (let i = 0; i < 10; i++) addRow();
+  </script>
+</body>
+</html>
 
