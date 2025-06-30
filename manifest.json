@@ -1,20 +1,20 @@
 {
   "name": "Materials Pass App",
-  "short_name": "MaterialsApp",
+  "short_name": "MPA",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "theme_color": "#003066",
   "icons": [
     {
       "src": "images/icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
       "src": "images/icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
