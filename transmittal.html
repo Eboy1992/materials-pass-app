@@ -15,10 +15,10 @@
     .form-container {
       background: white;
       width: 794px;
-      min-height: 1123px;
       margin: 0 auto;
       padding: 20px 30px;
       box-sizing: border-box;
+      page-break-inside: avoid;
     }
 
     img.header-img {
@@ -110,24 +110,16 @@
         border: none;
       }
 
+      .form-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px 30px;
+        page-break-inside: avoid;
+      }
+
       textarea {
         resize: none !important;
         overflow: hidden !important;
-      }
-
-      th {
-        resize: none !important;
-        overflow: hidden !important;
-      }
-
-      .form-container {
-        margin: 0;
-        padding: 20px 30px;
-        width: 794px;
-        height: auto;
-        background: white;
-        box-shadow: none;
-        border: none;
       }
 
       th, td {
@@ -224,7 +216,7 @@
       document.getElementById("entry-table").appendChild(row);
     }
 
-    for (let i = 0; i < 10; i++) addRow();
+    for (let i = 0; i < 6; i++) addRow();
   </script>
 </body>
 </html>
