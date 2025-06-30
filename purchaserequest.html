@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -162,6 +162,12 @@
 
       input, textarea {
         border: none;
+      }
+
+      /* Hide the 'Action' column */
+      table th:nth-child(5), /* Hide header for the Action column */
+      table td:nth-child(5) { /* Hide Action column data */
+        display: none !important;
       }
     }
   </style>
