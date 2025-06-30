@@ -1,7 +1,7 @@
 {
   "name": "Materials Pass App",
   "short_name": "MPA",
-  "start_url": "index.html",
+  "start_url": "/materials-pass-app/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#003066",
