@@ -7,620 +7,568 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#003066">
   <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #ccc;
-    margin: 0;
-    padding: 0;
-  }
-
-  .form-container {
-    max-width: 960px;
-    background: white;
-    margin: 20px auto;
-    padding: 30px;
-    border-radius: 10px;
-  }
-
-  .header-section {
-    text-align: center;
-  }
-
-  .header-section img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* Separated, Centered Title */
-  .form-title-standalone {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 30px;
-  }
-
-  .form-title-standalone h2 {
-    font-size: 26px;
-    margin: 0;
-  }
-
-  .top-row {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 0; /* Remove any padding if necessary */
-}
-
-.form-title-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: auto;
-  margin-right: 0; /* Push to the end */
-  width: 240px;
-}
-
-.form-title-right label {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.form-title-right input {
-  width: 100%;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 12px;
-}
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    table-layout: auto;
-  }
-
-  th, td {
-    border: 1px solid #ccc;
-    padding: 4px;
-    text-align: center;
-  }
-
-  th {
-    background-color: #003366;
-    color: white;
-    resize: horizontal;
-    overflow: auto;
-  }
-
-  input, textarea {
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
-
-  textarea {
-    resize: vertical;
-  }
-
-  .actions {
-    text-align: right;
-    margin-bottom: 20px;
-  }
-
-  .actions button {
-    background-color: #0066cc;
-    color: white;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-
-  .actions button:hover {
-    background-color: #004999;
-  }
-
-  .delete-btn {
-    background-color: #cc0000;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .purpose-section {
-    margin-bottom: 30px;
-  }
-
-  .purpose-section label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .purpose-section textarea {
-    width: 100%;
-    height: 60px;
-  }
-
-  .signature-table {
-    width: 100%;
-    margin-top: 30px;
-  }
-
-  .signature-table td {
-    padding: 20px 10px 0;
-    border: none;
-    vertical-align: top;
-  }
-
-  .signature-table input {
-    width: 100%;
-    border: 1px solid #ccc;
-    padding: 6px;
-    border-radius: 4px;
-  }
-
-  /* Underlined Input Styling */
-  .underlined-text {
-    min-height: 60px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 6px;
-    text-decoration: underline;
-    outline: none;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Modal Styles */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-
-  .modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  }
-
-  .modal-content h2 {
-    margin-top: 0;
-  }
-
-  .modal-content label {
-    margin-top: 10px;
-    display: block;
-    font-weight: bold;
-  }
-
-  .modal-content input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  .modal-actions {
-    text-align: right;
-    margin-top: 15px;
-  }
-
-  .modal-actions button {
-    padding: 8px 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-
-  .modal-actions .cancel-btn {
-    background-color: #ccc;
-    color: #333;
-  }
-
-  .modal-actions .save-btn {
-    background-color: #0066cc;
-    color: white;
-  }
-
-  /* Print Styles */
- @media print {
-  /* Hide unnecessary elements */
-  .actions, button, .modal {
-    display: none !important;
-  }
-  
-  /* Input/textarea adjustments */
-  input, textarea {
-    border: none;
-    font-size: 12px !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    box-sizing: border-box;
-    resize: none;
-  }
-  
-  .underlined-text {
-    font-size: 12px !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  /* Hide the 'Action' column */
-  table th:nth-child(5),
-  table td:nth-child(5) {
-    display: none !important;
-  }
-  
-  /* General print adjustments */
-  body {
-    background: none !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    font-size: 11px;
-    line-height: 1.2;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .form-container {
-    padding: 10px;
-    margin: 0;
-  }
-  
-  .form-title-standalone h2 {
-    font-size: 18px;
-    margin: 5px 0 10px 0;
-    text-align: center;
-  }
-  
-  .top-row,
-  .form-title-right {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .form-title-right {
-    margin-left: auto !important;
-    margin-right: -150px !important;
-  }
-  
-  .form-title-right input {
-    font-size: 11px;
-    padding: 2px 4px;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border-bottom: 1px solid black !important;
-  }
-  
-  /* Signature area adjustments */
-  .signature-table input {
-    font-size: 11px;
-    padding: 2px 0;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    text-decoration: underline;
-  }
-  
-  .signature-table td {
-    padding: 5px 4px 0;
-  }
-  
-  table {
-    margin-bottom: 10px;
-  }
-  
-  th, td {
-    padding: 4px !important;
-    font-size: 11px !important;
-  }
-  
-  th {
-    background-color: #003366 !important;
-    color: white !important;
-    resize: none;
-  }
-  
-  .purpose-section textarea {
-    height: 50px;
-    font-size: 11px;
-  }
-  
-  .signature-table {
-    margin-top: 10px;
-  }
-  
-  /* Existing rules … */
-  /* Center align input and textarea content in specific columns */
-  table th:nth-child(1) input,
-  table td:nth-child(1) input,
-  table th:nth-child(3) input,
-  table td:nth-child(3) input,
-  table th:nth-child(4) input,
-  table td:nth-child(4) input,
-  table th:nth-child(1) textarea,
-  table td:nth-child(1) textarea,
-  table th:nth-child(3) textarea,
-  table td:nth-child(3) textarea,
-  table th:nth-child(4) textarea,
-  table td:nth-child(4) textarea {
-    text-align: center !important;
-  }
-}
-</style>
-
-
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ccc;
+      margin: 0;
+      padding: 0;
+    }
+    .form-container {
+      max-width: 960px;
+      background: white;
+      margin: 20px auto;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    .header-section {
+      text-align: center;
+    }
+    .header-section img {
+      max-width: 100%;
+      height: auto;
+    }
+    /* Separated, Centered Title */
+    .form-title-standalone {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+    .form-title-standalone h2 {
+      font-size: 26px;
+      margin: 0;
+    }
+    .top-row {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 0; /* Remove any padding if necessary */
+    }
+    .form-title-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: auto;
+      margin-right: 0; /* Push to the end */
+      width: 240px;
+    }
+    .form-title-right label {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .form-title-right input {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      table-layout: auto;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 4px;
+      text-align: center;
+    }
+    th {
+      background-color: #003366;
+      color: white;
+      resize: horizontal;
+      overflow: auto;
+    }
+    input, textarea {
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .actions {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+    .actions button {
+      background-color: #0066cc;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .actions button:hover {
+      background-color: #004999;
+    }
+    .delete-btn {
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .purpose-section {
+      margin-bottom: 30px;
+    }
+    .purpose-section label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .purpose-section textarea {
+      width: 100%;
+      height: 60px;
+    }
+    .signature-table {
+      width: 100%;
+      margin-top: 30px;
+    }
+    .signature-table td {
+      padding: 20px 10px 0;
+      border: none;
+      vertical-align: top;
+    }
+    .signature-table input {
+      width: 100%;
+      border: 1px solid #ccc;
+      padding: 6px;
+      border-radius: 4px;
+    }
+    /* Underlined Input Styling */
+    .underlined-text {
+      min-height: 60px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px;
+      text-decoration: underline;
+      outline: none;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    }
+    .modal-content h2 {
+      margin-top: 0;
+    }
+    .modal-content label {
+      margin-top: 10px;
+      display: block;
+      font-weight: bold;
+    }
+    .modal-content input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .modal-actions {
+      text-align: right;
+      margin-top: 15px;
+    }
+    .modal-actions button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .modal-actions .cancel-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+    .modal-actions .save-btn {
+      background-color: #0066cc;
+      color: white;
+    }
+    /* Print Styles */
+    @media print {
+      /* Hide unnecessary elements */
+      .actions, button, .modal {
+        display: none !important;
+      }
+      /* Input/textarea adjustments */
+      input, textarea {
+        border: none;
+        font-size: 12px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        resize: none;
+      }
+      .underlined-text {
+        font-size: 12px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      /* Hide the 'Action' column */
+      table th:nth-child(5),
+      table td:nth-child(5) {
+        display: none !important;
+      }
+      /* General print adjustments */
+      body {
+        background: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 11px;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+      }
+      .form-container {
+        padding: 10px;
+        margin: 0;
+      }
+      .form-title-standalone h2 {
+        font-size: 18px;
+        margin: 5px 0 10px 0;
+        text-align: center;
+      }
+      .top-row,
+      .form-title-right {
+        margin: 0;
+        padding: 0;
+      }
+      .form-title-right {
+        margin-left: auto !important;
+        margin-right: -150px !important;
+      }
+      .form-title-right input {
+        font-size: 11px;
+        padding: 2px 4px;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid black !important;
+      }
+      /* Signature area adjustments */
+      .signature-table input {
+        font-size: 11px;
+        padding: 2px 0;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        text-decoration: underline;
+      }
+      .signature-table td {
+        padding: 5px 4px 0;
+      }
+      table {
+        margin-bottom: 10px;
+      }
+      th, td {
+        padding: 4px !important;
+        font-size: 11px !important;
+      }
+      th {
+        background-color: #003366 !important;
+        color: white !important;
+        resize: none;
+      }
+      .purpose-section textarea {
+        height: 50px;
+        font-size: 11px;
+      }
+      .signature-table {
+        margin-top: 10px;
+      }
+      /* Center align input and textarea content in specific columns */
+      table th:nth-child(1) input,
+      table td:nth-child(1) input,
+      table th:nth-child(3) input,
+      table td:nth-child(3) input,
+      table th:nth-child(4) input,
+      table td:nth-child(4) input,
+      table th:nth-child(1) textarea,
+      table td:nth-child(1) textarea,
+      table th:nth-child(3) textarea,
+      table td:nth-child(3) textarea,
+      table th:nth-child(4) textarea,
+      table td:nth-child(4) textarea {
+        text-align: center !important;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="form-container">
-  <!-- Header Logo -->
-  <div class="header-section">
-    <img src="header.png" alt="Fecient Header" />
-  </div>
-  <!-- Top Right Form Title and Info -->
-  <div class="form-title-standalone">
-  <h2>PURCHASE REQUISITION FORM</h2>
-</div>
-
-<!-- Form Info (PR No. and Date) -->
-<div class="top-row">
-  <div class="form-title-right">
-    <label for="prdate">Date:</label> 
-    <input id="prdate" type="text"> 
-    <label for="prno">PR No.:</label> 
-    <input id="prno" type="text"> 
-  </div>
-</div>
-  <!-- Table -->
-  <table>
-    <thead>
+  <div class="form-container">
+    <!-- Header Logo -->
+    <div class="header-section">
+      <img src="header.png" alt="Fecient Header" />
+    </div>
+    <!-- Top Right Form Title and Info -->
+    <div class="form-title-standalone">
+      <h2>PURCHASE REQUISITION FORM</h2>
+    </div>
+    <!-- Form Info (PR No. and Date) -->
+    <div class="top-row">
+      <div class="form-title-right">
+        <label for="prdate">Date:</label> 
+        <input id="prdate" type="text"> 
+        <label for="prno">PR No.:</label> 
+        <input id="prno" type="text"> 
+      </div>
+    </div>
+    <!-- Table -->
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 80px;">Item #</th>
+          <th style="width: 60%;">Description</th>
+          <th style="width: 100px;">Qty</th>
+          <th>Unit</th>
+          <th style="width: 100px;">Action</th>
+        </tr>
+      </thead>
+      <tbody id="pr-table"></tbody>
+    </table>
+    <!-- Action Buttons -->
+    <div class="actions">
+      <button onclick="addRow()">Add Row</button>
+      <button onclick="openSaveModal()">Save</button>
+      <button onclick="loadData()">Load</button>
+      <button onclick="window.print()">Print</button>
+    </div>
+    <!-- Purpose -->
+    <div class="purpose-section">
+      <label for="purpose">PURPOSE:</label>
+      <div id="purpose" contenteditable="true" class="underlined-text"></div>
+    </div>
+    <!-- Signatures -->
+    <table class="signature-table">
       <tr>
-        <th style="width: 80px;">Item #</th>
-        <th style="width: 60%;">Description</th>
-        <th style="width: 100px;">Qty</th>
-        <th>Unit</th>
-        <th style="width: 100px;">Action</th>
+        <td>
+          Requested by:<br><br>
+          <input id="requestedBy" type="text" class="underlined-text"><br><br><br>
+        </td>
+        <td>
+          Reviewed by:<br><br>
+          <input id="reviewedBy" type="text" class="underlined-text"><br><br><br>
+        </td>
+        <td>
+          Approved by:<br><br>
+          <input id="approvedBy" type="text" class="underlined-text"><br><br><br>
+        </td>
       </tr>
-    </thead>
-    <tbody id="pr-table"></tbody>
-  </table>
-  <!-- Action Buttons -->
-  <div class="actions">
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="openSaveModal()">Save</button>
-    <button onclick="loadData()">Load</button>
-    <button onclick="window.print()">Print</button>
+    </table>
   </div>
-  <!-- Purpose -->
-  <div class="purpose-section">
-  <label for="purpose">PURPOSE:</label>
-  <div id="purpose" contenteditable="true" class="underlined-text"></div>
-</div>
-  <!-- Signatures -->
-  <table class="signature-table">
-    <tr>
-      <td>
-        Requested by:<br><br>
-         <input id="requestedBy" type="text" class="underlined-text"><br><br><br>
-      </td>
-      <td>
-        Reviewed by:<br><br>
-        <input id="reviewedBy" type="text" class="underlined-text"><br><br><br>
-      </td>
-      <td>
-        Approved by:<br><br>
-        <input id="approvedBy" type="text" class="underlined-text"><br><br><br>
-      </td>
-    </tr>
-  </table>
-</div>
-<!-- Custom Modal for file saving -->
-<div id="saveModal" class="modal">
-  <div class="modal-content">
-    <h2>Save File</h2>
-    <label for="fileNameInput">Enter File Name:</label>
-    <input id="fileNameInput" type="text" placeholder="requisition.json">
-    <div class="modal-actions">
-      <button class="cancel-btn" id="modalCancel">Cancel</button>
-      <button class="save-btn" id="modalSave">Save</button>
+  <!-- Custom Modal for file saving -->
+  <div id="saveModal" class="modal">
+    <div class="modal-content">
+      <h2>Save File</h2>
+      <label for="fileNameInput">Enter File Name:</label>
+      <input id="fileNameInput" type="text" placeholder="requisition.json">
+      <div class="modal-actions">
+        <button class="cancel-btn" id="modalCancel">Cancel</button>
+        <button class="save-btn" id="modalSave">Save</button>
+      </div>
     </div>
   </div>
-</div>
-<script>
-  // Global file handle to avoid reselecting the file if the same file is used
-  let fileHandle = null;
-  // Utility: Gather form data into a formatted JSON string
-  function getFormData() {
-    const prno = document.getElementById('prno').value;
-    const prdate = document.getElementById('prdate').value;
-    const purpose = document.getElementById('purpose').innerText;
-    const requestedBy = document.getElementById('requestedBy').value;
-    const reviewedBy = document.getElementById('reviewedBy').value;
-    const approvedBy = document.getElementById('approvedBy').value;
-    const tableRows = document.querySelectorAll('#pr-table tr');
-    let rows = [];
-    tableRows.forEach(row => {
-      const inputs = row.querySelectorAll('input, textarea');
-      rows.push({
-        item: inputs[0].value,
-        description: inputs[1].value,
-        quantity: inputs[2].value,
-        unit: inputs[3].value
+  <script>
+    // Global file handle used for saving (but load always picks a new file)
+    let fileHandle = null;
+    // Utility: Gather form data into a formatted JSON string
+    function getFormData() {
+      const prno = document.getElementById('prno').value;
+      const prdate = document.getElementById('prdate').value;
+      const purpose = document.getElementById('purpose').innerText;
+      const requestedBy = document.getElementById('requestedBy').value;
+      const reviewedBy = document.getElementById('reviewedBy').value;
+      const approvedBy = document.getElementById('approvedBy').value;
+      const tableRows = document.querySelectorAll('#pr-table tr');
+      let rows = [];
+      tableRows.forEach(row => {
+        const inputs = row.querySelectorAll('input, textarea');
+        rows.push({
+          item: inputs[0].value,
+          description: inputs[1].value,
+          quantity: inputs[2].value,
+          unit: inputs[3].value
+        });
       });
+      const formData = {
+        prno,
+        prdate,
+        purpose,
+        rows,
+        requestedBy,
+        reviewedBy,
+        approvedBy
+      };
+      return JSON.stringify(formData, null, 2);
+    }
+    // Add a new row, optionally with pre-populated data
+    function addRow(rowData = {}) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><input type="text" style="width: 100%;" value="${rowData.item || ''}"></td>
+        <td><textarea rows="2" style="width: 100%;">${rowData.description || ''}</textarea></td>
+        <td><input type="number" min="0" style="width: 100%;" value="${rowData.quantity || ''}"></td>
+        <td><input type="text" style="width: 100%;" value="${rowData.unit || ''}"></td>
+        <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+      `;
+      document.getElementById('pr-table').appendChild(row);
+    }
+    
+    function deleteRow(button) {
+      button.closest('tr').remove();
+    }
+    
+    /* ----- Save Modal Functionality ----- */
+    const saveModal = document.getElementById("saveModal");
+    const modalCancel = document.getElementById("modalCancel");
+    const modalSave = document.getElementById("modalSave");
+    
+    function openSaveModal() {
+      // Set default file name; reuse existing fileHandle name if available
+      document.getElementById("fileNameInput").value = fileHandle ? fileHandle.name : "requisition.json";
+      saveModal.style.display = "flex";
+    }
+    
+    function closeSaveModal() {
+      saveModal.style.display = "none";
+    }
+    
+    modalCancel.addEventListener("click", closeSaveModal);
+    
+    modalSave.addEventListener("click", async function () {
+      const fileName = document.getElementById("fileNameInput").value.trim() || "requisition.json";
+      const jsonData = getFormData();
+      if (window.showSaveFilePicker) {
+        try {
+          // Request a new handle if none exists or if the name changed
+          if (!fileHandle || fileHandle.name !== fileName) {
+            fileHandle = await window.showSaveFilePicker({
+              suggestedName: fileName,
+              types: [{
+                description: "JSON Files",
+                accept: { "application/json": [".json"] }
+              }]
+            });
+          }
+          const writable = await fileHandle.createWritable();
+          await writable.write(jsonData);
+          await writable.close();
+          alert("File saved successfully!");
+        } catch (err) {
+          console.error("File save canceled or failed: ", err);
+        }
+      } else {
+        // Fallback: download a blob
+        const blob = new Blob([jsonData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+        alert("File downloaded. (Your browser does not support advanced saving)");
+      }
+      closeSaveModal();
     });
-    const formData = {
-      prno,
-      prdate,
-      purpose,
-      rows,
-      requestedBy,
-      reviewedBy,
-      approvedBy
-    };
-    return JSON.stringify(formData, null, 2);
-  }
-  // Add a new row, optionally with pre-populated data
-  function addRow(rowData = {}) {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td><input type="text" style="width: 100%;" value="${rowData.item || ''}"></td>
-      <td><textarea rows="2" style="width: 100%;">${rowData.description || ''}</textarea></td>
-      <td><input type="number" min="0" style="width: 100%;" value="${rowData.quantity || ''}"></td>
-      <td><input type="text" style="width: 100%;" value="${rowData.unit || ''}"></td>
-      <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
-    `;
-    document.getElementById('pr-table').appendChild(row);
-  }
-  function deleteRow(button) {
-    button.closest('tr').remove();
-  }
-  /* ----- Save Modal Functionality ----- */
-  const saveModal = document.getElementById("saveModal");
-  const modalCancel = document.getElementById("modalCancel");
-  const modalSave = document.getElementById("modalSave");
-  function openSaveModal() {
-    // Set default file name; reuse existing fileHandle name if available
-    document.getElementById("fileNameInput").value = fileHandle ? fileHandle.name : "requisition.json";
-    saveModal.style.display = "flex";
-  }
-  function closeSaveModal() {
-    saveModal.style.display = "none";
-  }
-  modalCancel.addEventListener("click", closeSaveModal);
-  modalSave.addEventListener("click", async function () {
-    const fileName = document.getElementById("fileNameInput").value.trim() || "requisition.json";
-    const jsonData = getFormData();
-    if (window.showSaveFilePicker) {
+    
+    /* ----- Load Functionality ----- */
+    async function loadData() {
       try {
-        // Request a new handle if none exists or if the name changed
-        if (!fileHandle || fileHandle.name !== fileName) {
-          fileHandle = await window.showSaveFilePicker({
-            suggestedName: fileName,
+        if (window.showOpenFilePicker) {
+          // Always force the file picker to open each time "Load" is clicked
+          const [pickedHandle] = await window.showOpenFilePicker({
             types: [{
               description: "JSON Files",
               accept: { "application/json": [".json"] }
             }]
           });
+          fileHandle = pickedHandle;
+          const file = await fileHandle.getFile();
+          const text = await file.text();
+          let formData;
+          try {
+            formData = JSON.parse(text);
+          } catch (e) {
+            throw new Error("Invalid JSON");
+          }
+          // Validate the expected format
+          if (
+            typeof formData !== "object" ||
+            !("prno" in formData) ||
+            !("prdate" in formData) ||
+            !("purpose" in formData) ||
+            !("rows" in formData) ||
+            !Array.isArray(formData.rows)
+          ) {
+            throw new Error("File format does not fit the expected structure.");
+          }
+          // Populate form fields if validation succeeds
+          document.getElementById('prno').value = formData.prno || '';
+          document.getElementById('prdate').value = formData.prdate || '';
+          document.getElementById('purpose').innerText = formData.purpose || '';
+          document.getElementById('requestedBy').value = formData.requestedBy || '';
+          document.getElementById('reviewedBy').value = formData.reviewedBy || '';
+          document.getElementById('approvedBy').value = formData.approvedBy || '';
+          // Rebuild table rows
+          const tableBody = document.getElementById('pr-table');
+          tableBody.innerHTML = '';
+          formData.rows.forEach(rowData => addRow(rowData));
+          alert("File loaded successfully!");
+        } else {
+          alert("File picker not supported in this browser.");
         }
-        const writable = await fileHandle.createWritable();
-        await writable.write(jsonData);
-        await writable.close();
-        alert("File saved successfully!");
-      } catch (err) {
-        console.error("File save canceled or failed: ", err);
+      } catch (error) {
+        console.error("Error loading file: ", error);
+        alert("Failed to load file: " + error.message);
       }
-    } else {
-      // Fallback: download a blob
-      const blob = new Blob([jsonData], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 100);
-      alert("File downloaded. (Your browser does not support advanced saving)");
     }
-    closeSaveModal();
-  });
-  /* ----- Load Functionality ----- */
-  async function loadData() {
-    try {
-      let handle = fileHandle;
-      if (!handle && window.showOpenFilePicker) {
-        // Open file picker if no stored handle exists
-        const [pickedHandle] = await window.showOpenFilePicker({
-          types: [{
-            description: "JSON Files",
-            accept: { "application/json": [".json"] }
-          }]
-        });
-        handle = pickedHandle;
-        fileHandle = handle;
-      }
-      if (handle) {
-        const file = await handle.getFile();
-        const text = await file.text();
-        let formData;
-        try {
-          formData = JSON.parse(text);
-        } catch (e) {
-          throw new Error("Invalid JSON");
-        }
-        // Validate the expected format
-        if (
-          typeof formData !== "object" ||
-          !("prno" in formData) ||
-          !("prdate" in formData) ||
-          !("purpose" in formData) ||
-          !("rows" in formData) ||
-          !Array.isArray(formData.rows)
-        ) {
-          throw new Error("File format does not fit the expected structure.");
-        }
-        // Populate form fields if validation succeeds
-        document.getElementById('prno').value = formData.prno || '';
-        document.getElementById('prdate').value = formData.prdate || '';
-        document.getElementById('purpose').innerText = formData.purpose || '';
-        document.getElementById('requestedBy').value = formData.requestedBy || '';
-        document.getElementById('reviewedBy').value = formData.reviewedBy || '';
-        document.getElementById('approvedBy').value = formData.approvedBy || '';
-        // Rebuild table rows
-        const tableBody = document.getElementById('pr-table');
-        tableBody.innerHTML = '';
-        formData.rows.forEach(rowData => addRow(rowData));
-        alert("File loaded successfully!");
-      } else {
-        alert("No file selected.");
-      }
-    } catch (error) {
-      console.error("Error loading file: ", error);
-      alert("Failed to load file: " + error.message);
+    
+    // Add 3 default rows on page load
+    for (let i = 0; i < 3; i++) {
+      addRow();
     }
-  }
-  // Add 3 default rows on page load
-  for (let i = 0; i < 3; i++) {
-    addRow();
-  }
-</script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(registration => {
-          console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(error => {
-          console.log('Service Worker registration failed:', error);
-        });
-    });
-  }
-</script>
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
