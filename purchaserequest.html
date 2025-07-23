@@ -245,89 +245,69 @@
   }
 
   /* Print Styles */
-  @media print {
-    .actions, button, .modal {
-      display: none !important;
-    }
-
-    input, textarea {
-      border: none;
-      font-size: 12px !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      box-sizing: border-box;
-    }
-
-    .underlined-text {
-      font-size: 12px !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Hide the 'Action' column if present */
-    table th:nth-child(5),
-    table td:nth-child(5) {
-      display: none !important;
-    }
-
-    body {
-      background: none !important;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .form-title-standalone h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .top-row {
-      justify-content: flex-end;
-    }
-    .signature-table input {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-  }
-  /* Hide on-screen elements */
+ @media print {
+  /* Hide unnecessary elements */
   .actions, button, .modal {
     display: none !important;
   }
-
-  /* Compact layout */
+  
+  /* Input/textarea adjustments */
+  input, textarea {
+    border: none;
+    font-size: 12px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    resize: none;
+  }
+  
+  .underlined-text {
+    font-size: 12px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Hide the 'Action' column */
+  table th:nth-child(5),
+  table td:nth-child(5) {
+    display: none !important;
+  }
+  
+  /* General print adjustments */
   body {
     background: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
     font-size: 11px;
     line-height: 1.2;
     margin: 0;
     padding: 0;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
   }
-
+  
   .form-container {
     padding: 10px;
     margin: 0;
   }
-
+  
   .form-title-standalone h2 {
     font-size: 18px;
     margin: 5px 0 10px 0;
+    text-align: center;
   }
-
+  
   .top-row,
   .form-title-right {
     margin: 0;
     padding: 0;
   }
-
+  
   .form-title-right {
     margin-left: auto !important;
     margin-right: -150px !important;
   }
-
+  
   .form-title-right input {
     font-size: 11px;
     padding: 2px 4px;
@@ -336,42 +316,8 @@
     box-shadow: none !important;
     border-bottom: 1px solid black !important;
   }
-
-  input,
-  textarea {
-    border: none !important;
-    font-size: 11px !important;
-    padding: 2px 4px !important;
-    line-height: 1.2;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    box-sizing: border-box;
-  }
-
-  .underlined-text {
-    font-size: 11px !important;
-    padding: 2px 0 !important;
-    text-decoration: underline !important;
-  }
-
-  .purpose-section {
-    margin-bottom: 10px;
-  }
-
-  .purpose-section textarea {
-    height: 50px;
-    font-size: 11px;
-  }
-
-  .signature-table {
-    margin-top: 10px;
-  }
-
-  .signature-table td {
-    padding: 5px 4px 0;
-  }
-
+  
+  /* Signature area adjustments */
   .signature-table input {
     font-size: 11px;
     padding: 2px 0;
@@ -380,27 +326,51 @@
     box-shadow: none !important;
     text-decoration: underline;
   }
-
+  
+  .signature-table td {
+    padding: 5px 4px 0;
+  }
+  
   table {
     margin-bottom: 10px;
   }
-
+  
   th, td {
     padding: 4px !important;
     font-size: 11px !important;
   }
-
+  
   th {
     background-color: #003366 !important;
     color: white !important;
   }
-
-  /* Hide the 'Action' column if present */
-  table th:nth-child(5),
-  table td:nth-child(5) {
-    display: none !important;
+  
+  .purpose-section textarea {
+    height: 50px;
+    font-size: 11px;
   }
+  
+  .signature-table {
+    margin-top: 10px;
   }
+  
+  /* Existing rules … */
+  /* Center align input and textarea content in specific columns */
+  table th:nth-child(1) input,
+  table td:nth-child(1) input,
+  table th:nth-child(3) input,
+  table td:nth-child(3) input,
+  table th:nth-child(4) input,
+  table td:nth-child(4) input,
+  table th:nth-child(1) textarea,
+  table td:nth-child(1) textarea,
+  table th:nth-child(3) textarea,
+  table td:nth-child(3) textarea,
+  table th:nth-child(4) textarea,
+  table td:nth-child(4) textarea {
+    text-align: center !important;
+  }
+}
 </style>
 
 
