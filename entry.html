@@ -5,8 +5,7 @@
   <title>LIST OF TOOLS/MATERIALS FOR ENTRY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#003066">
-
+  <meta name="theme-color" content="#003066">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -30,6 +29,7 @@
     h2 {
       text-align: center;
       margin-top: 0;
+      margin-bottom: 20px;
     }
     table {
       width: 100%;
@@ -40,6 +40,10 @@
       border: 1px solid #ccc;
       padding: 6px;
     }
+    th {
+      background-color: #eef;
+      text-align: center;
+    }
     input, textarea {
       width: 100%;
       padding: 6px;
@@ -47,10 +51,23 @@
       box-sizing: border-box;
       border-radius: 4px;
       font-family: inherit;
+      font-size: 14px;
     }
     textarea {
+      /* allow vertical resizing by content only without scrollbars */
       resize: vertical;
       font-size: 14px;
+      overflow: hidden;
+    }
+    /* Class to left-align text inside input/textarea */
+    .text-left {
+      text-align: left !important;
+    }
+    /* Class to auto-resize textareas */
+    .auto-resize {
+      overflow: hidden;
+      resize: none;
+      box-sizing: border-box;
     }
     .actions {
       text-align: right;
@@ -75,36 +92,160 @@
       font-style: italic;
       text-align: center;
     }
+    /* Modal Styles for saving */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    }
+    .modal-content h2 {
+      margin-top: 0;
+    }
+    .modal-content label {
+      margin-top: 10px;
+      display: block;
+      font-weight: bold;
+    }
+    .modal-content input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .modal-actions {
+      text-align: right;
+      margin-top: 15px;
+    }
+    .modal-actions button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .modal-actions .cancel-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+    .modal-actions .save-btn {
+      background-color: #0066cc;
+      color: white;
+    }
+    .underline {
+      text-decoration: underline;
+    }
+    /* Center align input and textarea content in specific table columns */
+    table th:nth-child(1) input,
+    table td:nth-child(1) input,
+    table th:nth-child(3) input,
+    table td:nth-child(3) input,
+    table th:nth-child(4) input,
+    table td:nth-child(4) input,
+    table th:nth-child(1) textarea,
+    table td:nth-child(1) textarea,
+    table th:nth-child(3) textarea,
+    table td:nth-child(3) textarea,
+    table th:nth-child(4) textarea,
+    table td:nth-child(4) textarea {
+      text-align: center;
+    }
     @media print {
-      .actions, button { display: none !important; }
-      input, textarea { border: none; }
+      @page {
+        margin: 5mm;
+      }
+      /* Hide actions and buttons during printing */
+      .actions, button {
+        display: none !important;
+      }
+      input, textarea {
+        border: none;
+      }
+      /* Set a uniform font size for all labels and inputted data when printing */
+      body, input, textarea, strong, label, h2 {
+        font-size: 12px !important;
+      }
+      body {
+        background: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+      }
+      .form-container {
+        box-shadow: none !important;
+        margin: 0;
+        padding: 5mm;
+      }
+      th, td {
+        padding: 2px 4px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="form-container">
+    <!-- Header Image & Title -->
     <img src="header.png" alt="Company Header" class="header-img" />
     <h2>LIST OF TOOLS/MATERIALS FOR ENTRY</h2>
+    <!-- Header Fields -->
     <table class="no-border">
       <tr>
-        <td><strong>Work Site:</strong> <input type="text" /></td>
-        <td><strong>Address:</strong> <input type="text" /></td>
+        <td>
+          <strong>Work Site:</strong>
+          <textarea id="workSite" class="text-left underline auto-resize" rows="1"></textarea>
+        </td>
+        <td>
+          <strong>Address:</strong>
+          <textarea id="address" class="underline auto-resize" rows="1"></textarea>
+        </td>
       </tr>
       <tr>
-        <td><strong>Project Title:</strong> <input type="text" /></td>
-        <td><strong>Date:</strong> <input type="" /></td>
+        <td>
+          <strong>Project Title:</strong>
+          <textarea id="projectTitle" class="text-left underline auto-resize" rows="1"></textarea>
+        </td>
+        <td>
+          <strong>Date:</strong><br>
+          <textarea id="date" class="underline auto-resize" rows="1" style="width: 120px; text-align: left;"></textarea>
+        </td>
       </tr>
       <tr>
-        <td><strong>Contractor:</strong> <input type="text" /></td>
-        <td><strong>Owner:</strong> <input type="text" /></td>
+        <td>
+          <strong>Contractor:</strong>
+          <textarea id="contractor" class="text-left underline auto-resize" rows="1"></textarea>
+        </td>
+        <td>
+          <strong>Owner:</strong>
+          <textarea id="owner" class="underline auto-resize" rows="1"></textarea>
+        </td>
       </tr>
     </table>
-
+    <!-- Actions: Add Row, Save, Load, Print -->
     <div class="actions">
       <button onclick="addRow()">Add Row</button>
+      <button onclick="openSaveModal()">Save</button>
+      <button onclick="loadData()">Load</button>
       <button onclick="window.print()">Print</button>
     </div>
-
+    <!-- Items Table -->
     <table>
       <thead>
         <tr>
@@ -117,42 +258,206 @@
       </thead>
       <tbody id="entry-table"></tbody>
     </table>
-
     <div class="italic">Nothing Follows</div>
-
+    <!-- Signature Section -->
     <table class="no-border">
       <tr>
         <td>
           <strong>Prepared by:</strong><br><br>
-          ___________________________<br>
+          <input type="text" id="preparedBy" class="underline" style="font-weight: bold; text-align: left;"/><br>
           FECIENT Solutions Provider<br>
-          Date: <input type="" />
+          Date: <input type="text" id="preparedDate" class="underline" style="margin-left: 5px; width: 120px;"/>
         </td>
-        <td>
+        <td style="padding-left: 220px;">
           <strong>Checked by:</strong><br><br>
-          ___________________________<br>
+          <input type="text" id="checkedBy" class="underline" style="font-weight: bold; text-align: left;" /><br>
           Gate Security<br>
-          Date: <input type="" />
+          Date: <input type="text" id="checkedDate" class="underline" style="margin-left: 5px; width: 120px; text-align: center;"/>
         </td>
       </tr>
     </table>
   </div>
-
+  <!-- Save File Modal -->
+  <div id="saveModal" class="modal">
+    <div class="modal-content">
+      <h2>Save File</h2>
+      <label for="fileNameInput">Enter File Name:</label>
+      <input id="fileNameInput" type="text" placeholder="entry.json" />
+      <div class="modal-actions">
+        <button class="cancel-btn" id="modalCancel">Cancel</button>
+        <button class="save-btn" id="modalSave">Save</button>
+      </div>
+    </div>
+  </div>
   <script>
-    function addRow() {
-      const row = document.createElement("tr");
+    let fileHandle = null;
+    
+    // Helper: Adjust the height of all auto-resize textareas.
+    function adjustTextareas() {
+      document.querySelectorAll('textarea.auto-resize').forEach(textarea => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      });
+    }
+    
+    // Gather form data into a JSON string.
+    function getFormData() {
+      const data = {
+        workSite: document.getElementById('workSite').value,
+        address: document.getElementById('address').value,
+        projectTitle: document.getElementById('projectTitle').value,
+        date: document.getElementById('date').value,
+        contractor: document.getElementById('contractor').value,
+        owner: document.getElementById('owner').value,
+        rows: [],
+        preparedBy: document.getElementById('preparedBy').value,
+        preparedDate: document.getElementById('preparedDate').value,
+        checkedBy: document.getElementById('checkedBy').value,
+        checkedDate: document.getElementById('checkedDate').value
+      };
+      document.querySelectorAll('#entry-table tr').forEach(row => {
+        const inputs = row.querySelectorAll('input, textarea');
+        data.rows.push({
+          item: inputs[0].value,
+          description: inputs[1].value,
+          quantity: inputs[2].value,
+          unit: inputs[3].value
+        });
+      });
+      return JSON.stringify(data, null, 2);
+    }
+    
+    // Add a new row to the entry table.
+    function addRow(rowData = {}) {
+      const row = document.createElement('tr');
       row.innerHTML = `
-        <td><input type="text" style="width: 80px;"></td>
-        <td><textarea rows="2" style="width: 100%;"></textarea></td>
-        <td><input type="number" min="0" style="width: 80px;"></td>
-        <td><input type="text"></td>
+        <td><input type="text" style="width: 80px;" value="${rowData.item || ''}"></td>
+        <td><textarea rows="2" class="auto-resize" style="width: 100%;">${rowData.description || ''}</textarea></td>
+        <td><input type="number" min="0" style="width: 80px;" value="${rowData.quantity || ''}"></td>
+        <td><input type="text" value="${rowData.unit || ''}"></td>
         <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
       `;
-      document.getElementById("entry-table").appendChild(row);
+      document.getElementById('entry-table').appendChild(row);
+      adjustTextareas();
     }
+    
+    // Add 3 default rows.
     for (let i = 0; i < 3; i++) addRow();
+    
+    // Modal functionality.
+    const saveModal = document.getElementById("saveModal");
+    const modalCancel = document.getElementById("modalCancel");
+    const modalSave = document.getElementById("modalSave");
+    
+    function openSaveModal() {
+      document.getElementById("fileNameInput").value = fileHandle ? fileHandle.name : "entry.json";
+      saveModal.style.display = "flex";
+    }
+    function closeSaveModal() {
+      saveModal.style.display = "none";
+    }
+    modalCancel.addEventListener("click", closeSaveModal);
+    modalSave.addEventListener("click", async function() {
+      const fileName = document.getElementById("fileNameInput").value.trim() || "entry.json";
+      const jsonData = getFormData();
+      if (window.showSaveFilePicker) {
+        try {
+          if (!fileHandle || fileHandle.name !== fileName) {
+            fileHandle = await window.showSaveFilePicker({
+              suggestedName: fileName,
+              types: [{
+                description: "JSON Files",
+                accept: { "application/json": [".json"] }
+              }]
+            });
+          }
+          const writable = await fileHandle.createWritable();
+          await writable.write(jsonData);
+          await writable.close();
+          alert("File saved successfully!");
+        } catch (err) {
+          console.error("File save canceled or failed:", err);
+        }
+      } else {
+        const blob = new Blob([jsonData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+        alert("File downloaded. (Fallback method)");
+      }
+      closeSaveModal();
+    });
+    
+    // Load data from file.
+    async function loadData() {
+      try {
+        if (window.showOpenFilePicker) {
+          const [pickedHandle] = await window.showOpenFilePicker({
+            types: [{
+              description: "JSON Files",
+              accept: { "application/json": [".json"] }
+            }]
+          });
+          fileHandle = pickedHandle;
+          const file = await fileHandle.getFile();
+          const text = await file.text();
+          let data;
+          try {
+            data = JSON.parse(text);
+          } catch (e) {
+            throw new Error("Invalid JSON");
+          }
+          if (
+            typeof data !== "object" ||
+            !("workSite" in data) ||
+            !("date" in data) ||
+            !("rows" in data) ||
+            !Array.isArray(data.rows)
+          ) {
+            throw new Error("File format does not match the expected structure.");
+          }
+          document.getElementById('workSite').value = data.workSite || '';
+          document.getElementById('address').value = data.address || '';
+          document.getElementById('projectTitle').value = data.projectTitle || '';
+          document.getElementById('date').value = data.date || '';
+          document.getElementById('contractor').value = data.contractor || '';
+          document.getElementById('owner').value = data.owner || '';
+          const tableBody = document.getElementById('entry-table');
+          tableBody.innerHTML = '';
+          data.rows.forEach(rowData => addRow(rowData));
+          document.getElementById('preparedBy').value = data.preparedBy || '';
+          document.getElementById('preparedDate').value = data.preparedDate || '';
+          document.getElementById('checkedBy').value = data.checkedBy || '';
+          document.getElementById('checkedDate').value = data.checkedDate || '';
+          // Make sure all auto-resize textareas adjust to their content.
+          adjustTextareas();
+          alert("File loaded successfully!");
+        } else {
+          alert("File picker not supported in this browser.");
+        }
+      } catch (error) {
+        console.error("Error loading file:", error);
+        alert("Failed to load file: " + error.message);
+      }
+    }
+    
+    // Single event listener for auto-resizing on input.
+    document.addEventListener('input', function(e) {
+      if (e.target.tagName.toLowerCase() === 'textarea' && e.target.classList.contains('auto-resize')) {
+        e.target.style.height = 'auto';
+        e.target.style.height = e.target.scrollHeight + 'px';
+      }
+    });
+    
+    // Adjust textareas once on window load.
+    window.addEventListener('load', adjustTextareas);
   </script>
-<script>
+  <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js')
@@ -164,6 +469,6 @@
           });
       });
     }
-  </script>  
+  </script>
 </body>
 </html>
