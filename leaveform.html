@@ -1,324 +1,488 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leave Form</title>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#003066">
-
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #ccc;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
-
-    .form-container {
-      width: 100%;
-      max-width: 650px;
-      background: white;
-      margin: 20px auto;
-      padding: 20px 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      font-size: 15px;
-    }
-
-    img.header-img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-
-    .form-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 15px;
-    }
-
-    .form-group {
-      flex: 1;
-      min-width: 45%;
-    }
-
-    .form-group label {
-      font-size: 14px;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px 12px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-sizing: border-box;
-    }
-
-    .form-group textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-
-    .signatories-section {
-      border-top: 1px solid #ccc;
-      margin-top: 20px;
-      padding-top: 15px;
-    }
-
-    .signatories-section h2 {
-      font-size: 16px;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-
-    .signature-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 15px;
-    }
-
-    .signature-pad {
-      border: 1px solid #ccc;
-      width: 100%;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      overflow: hidden;
-      margin-top: 4px;
-    }
-
-    .upload-signature {
-      margin-top: 6px;
-      font-size: 13px;
-    }
-
-    .upload-signature label {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .upload-signature input {
-      width: 100%;
-      font-size: 13px;
-      padding: 6px;
-    }
-
-    .actions {
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .actions button {
-      padding: 8px 16px;
-      font-size: 14px;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .form-footer {
-      text-align: center;
-      font-size: 12px;
-      margin-top: 15px;
-    }
-
-    .form-footer a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-
-    .form-footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media print {
-      @page {
-        margin: 5mm;
-      }
-
-      .actions,
-      .form-footer,
-      .upload-signature {
-        display: none !important;
-      }
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>Leave Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#003066">
+    <style>
       body {
-        background: white;
-      }
-
-      .form-container {
-        box-shadow: none;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #ccc;
         margin: 0;
         padding: 0;
-        max-width: 100%;
-        width: 100%;
+        display: flex;
+        justify-content: center;
       }
-    }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <img src="header.png" alt="Leave Form Header" class="header-img" />
-    <h1>LEAVE FORM</h1>
-    <form>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="dateOfRequest">Date of Request</label>
-          <input type="date" id="dateOfRequest" required />
+      .form-container {
+        width: 100%;
+        max-width: 650px;
+        background: white;
+        margin: 20px auto;
+        padding: 20px 30px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-sizing: border-box;
+        font-size: 15px;
+        position: relative;
+      }
+      img.header-img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+      .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 15px;
+      }
+      .form-group {
+        flex: 1;
+        min-width: 45%;
+      }
+      .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      .form-group textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+      /* Auto-resize class for the reason textarea */
+      .auto-resize {
+        overflow: hidden;
+        resize: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .signatories-section {
+        border-top: 1px solid #ccc;
+        margin-top: 20px;
+        padding-top: 15px;
+      }
+      .signatories-section h2 {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+      .signature-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 15px;
+      }
+      .signature-pad {
+        border: 1px solid #ccc;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-top: 4px;
+      }
+      .upload-signature {
+        margin-top: 6px;
+        font-size: 13px;
+      }
+      .upload-signature label {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .upload-signature input {
+        width: 100%;
+        font-size: 13px;
+        padding: 6px;
+      }
+      .actions {
+        text-align: center;
+        margin-top: 15px;
+      }
+      .actions button {
+        padding: 8px 16px;
+        font-size: 14px;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 5px;
+      }
+      .form-footer {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 15px;
+      }
+      .form-footer a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      .form-footer a:hover {
+        text-decoration: underline;
+      }
+      /* Modal Styles for Saving */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        box-sizing: border-box;
+      }
+      .modal-content h2 {
+        margin-top: 0;
+      }
+      .modal-content label {
+        margin-top: 10px;
+        display: block;
+        font-weight: bold;
+      }
+      .modal-content input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .modal-actions {
+        text-align: right;
+        margin-top: 15px;
+      }
+      .modal-actions button {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      .modal-actions .cancel-btn {
+        background-color: #ccc;
+        color: #333;
+      }
+      .modal-actions .save-btn {
+        background-color: #0066cc;
+        color: white;
+      }
+      @media print {
+        @page {
+          margin: 5mm;
+        }
+        .actions,
+        .form-footer,
+        .upload-signature,
+        .modal {
+          display: none !important;
+        }
+        body {
+          background: white;
+        }
+        .form-container {
+          box-shadow: none;
+          margin: 0;
+          padding: 0;
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container" id="leaveFormContainer">
+      <img src="header.png" alt="Leave Form Header" class="header-img" />
+      <h1>LEAVE FORM</h1>
+      <form id="leaveForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dateOfRequest">Date of Request</label>
+            <input type="date" id="dateOfRequest" required />
+          </div>
+          <div class="form-group">
+            <label for="leaveType">Type of Leave</label>
+            <input list="leaveOptions" id="leaveType" name="leaveType" required />
+            <datalist id="leaveOptions">
+              <option value="Sick">
+              <option value="Vacation">
+              <option value="Maternity">
+              <option value="Paternity">
+              <option value="Solo Parent">
+              <option value="Special (Women)">
+              <option value="Bereavement">
+              <option value="Sabbatical">
+            </datalist>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="leaveType">Type of Leave</label>
-          <input list="leaveOptions" id="leaveType" name="leaveType" required />
-          <datalist id="leaveOptions">
-            <option value="Sick">
-            <option value="Vacation">
-            <option value="Maternity">
-            <option value="Paternity">
-            <option value="Solo Parent">
-            <option value="Special (Women)">
-            <option value="Bereavement">
-            <option value="Sabbatical">
-          </datalist>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="employeeName">Employee Name</label>
+            <input type="text" id="employeeName" required />
+          </div>
+          <div class="form-group">
+            <label for="employeeID">Employee ID</label>
+            <input type="text" id="employeeID" required />
+          </div>
         </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="employeeName">Employee Name</label>
-          <input type="text" id="employeeName" required />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="leaveStartDate">Start Date</label>
+            <input type="date" id="leaveStartDate" required />
+          </div>
+          <div class="form-group">
+            <label for="leaveEndDate">End Date</label>
+            <input type="date" id="leaveEndDate" required />
+          </div>
         </div>
-        <div class="form-group">
-          <label for="employeeID">Employee ID</label>
-          <input type="text" id="employeeID" required />
+        <div class="form-row">
+          <div class="form-group" style="width: 100%">
+            <label for="leaveReason">Reason</label>
+            <textarea id="leaveReason" class="auto-resize" required></textarea>
+          </div>
         </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="leaveStartDate">Start Date</label>
-          <input type="date" id="leaveStartDate" required />
-        </div>
-        <div class="form-group">
-          <label for="leaveEndDate">End Date</label>
-          <input type="date" id="leaveEndDate" required />
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group" style="width: 100%">
-          <label for="leaveReason">Reason</label>
-          <textarea id="leaveReason" required></textarea>
-        </div>
-      </div>
-
-      <div class="signatories-section">
-        <h2>SIGNATORIES</h2>
-        <div class="signature-container">
-          <div class="form-group" style="flex: 1">
-            <label for="employeeSignature">Employee</label>
-            <div class="signature-pad" id="employeeSignaturePad"></div>
-            <div class="upload-signature" id="uploadSignatureSection">
-              <label for="employeeSignatureUpload">Or upload signature</label>
-              <input type="file" id="employeeSignatureUpload" accept="image/*" />
+        <div class="signatories-section">
+          <h2>SIGNATORIES</h2>
+          <div class="signature-container">
+            <div class="form-group" style="flex: 1">
+              <label for="employeeSignature">Employee</label>
+              <div class="signature-pad" id="employeeSignaturePad"></div>
+              <div class="upload-signature" id="uploadSignatureSection">
+                <label for="employeeSignatureUpload">Or upload signature</label>
+                <input type="file" id="employeeSignatureUpload" accept="image/*" />
+              </div>
+            </div>
+            <div class="form-group" style="flex: 1">
+              <label for="supervisorSignature">Supervisor</label>
+              <input type="text" id="supervisorSignature" required />
             </div>
           </div>
-          <div class="form-group" style="flex: 1">
-            <label for="supervisorSignature">Supervisor</label>
-            <input type="text" id="supervisorSignature" required />
+          <div class="signature-container">
+            <div class="form-group" style="flex: 1">
+              <label for="hrApprovalSignature">HR Approval</label>
+              <input type="text" id="hrApprovalSignature" required />
+            </div>
+            <div class="form-group" style="flex: 1">
+              <label for="managementApprovalSignature">Management</label>
+              <input type="text" id="managementApprovalSignature" required />
+            </div>
           </div>
         </div>
-
-        <div class="signature-container">
-          <div class="form-group" style="flex: 1">
-            <label for="hrApprovalSignature">HR Approval</label>
-            <input type="text" id="hrApprovalSignature" required />
-          </div>
-          <div class="form-group" style="flex: 1">
-            <label for="managementApprovalSignature">Management</label>
-            <input type="text" id="managementApprovalSignature" required />
-          </div>
+        <!-- Actions: Save, Load, Print Preview -->
+        <div class="actions">
+          <button type="button" onclick="openSaveModal()">Save</button>
+          <button type="button" onclick="loadData()">Load</button>
+          <button type="button" onclick="openPrintPreview()">Print Preview</button>
+          <small style="display:block;text-align:center;font-size:12px;color:#888;margin-top:5px;">
+            📱 Bonus Tip: On mobile, tap your browser’s <b>Share</b> or <b>⋮</b> menu, then select <b>Print</b>.
+          </small>
         </div>
+      </form>
+      <div class="form-footer">
+        <p>
+          Need help? Contact HR:
+          <br />
+          <a href="https://www.facebook.com/share/16eZpQwaT4/" target="_blank">📩 Messenger</a> |
+          📱 <a href="tel:09917195297">09917195297</a>
+        </p>
       </div>
-
-      <div class="actions">
-        <button type="button" onclick="openPrintPreview()">Print Preview</button>
-        <small style="display:block;text-align:center;font-size:12px;color:#888;margin-top:5px;">
-          📱 Bonus Tip: On mobile, tap your browser’s <b>Share</b> or <b>⋮</b> menu, then select <b>Print</b>.
-        </small>
-      </div>
-    </form>
-
-    <div class="form-footer">
-      <p>
-        Need help? Contact HR:
-        <br />
-        <a href="https://www.facebook.com/share/16eZpQwaT4/" target="_blank">📩 Messenger</a> |
-        📱 <a href="tel:09917195297">09917195297</a>
-      </p>
     </div>
-  </div>
-
-  <script>
-  const employeeSignatureUpload = document.getElementById("employeeSignatureUpload");
-  const employeeSignaturePad = document.getElementById("employeeSignaturePad");
-
-  employeeSignatureUpload.addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        employeeSignaturePad.innerHTML =
-          `<img src="${e.target.result}" style="max-height: 60px; max-width: 100%; object-fit: contain;">`;
-      };
-      reader.readAsDataURL(file);
-    } else {
-      employeeSignaturePad.innerHTML = "";
-    }
-  });
-
-  function openPrintPreview() {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile) {
-      alert("📱 Mobile Tip: Tap your browser menu (⋮ or Share) and choose 'Print'.");
-      setTimeout(() => window.print(), 300);
-    } else {
-      window.print();
-    }
-  }
-</script>
-<script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
-          })
-          .catch(error => {
-            console.log('Service Worker registration failed:', error);
-          });
+    <!-- Save File Modal -->
+    <div id="saveModal" class="modal">
+      <div class="modal-content">
+        <h2>Save File</h2>
+        <label for="fileNameInput">Enter File Name:</label>
+        <input id="fileNameInput" type="text" placeholder="leaveform.json" />
+        <div class="modal-actions">
+          <button class="cancel-btn" id="modalCancel">Cancel</button>
+          <button class="save-btn" id="modalSave">Save</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // File System Access API global file handle (used for saving; load always picks a new file)
+      let fileHandle = null;
+      // Utility: Gather all form data into a JSON string
+      function getFormData() {
+        // If a signature image is present (employee signature), capture its innerHTML (or src of image)
+        let employeeSignature = "";
+        const sigImg = document.querySelector("#employeeSignaturePad img");
+        if(sigImg) {
+          employeeSignature = sigImg.src;
+        }
+        const data = {
+          dateOfRequest: document.getElementById('dateOfRequest').value,
+          leaveType: document.getElementById('leaveType').value,
+          employeeName: document.getElementById('employeeName').value,
+          employeeID: document.getElementById('employeeID').value,
+          leaveStartDate: document.getElementById('leaveStartDate').value,
+          leaveEndDate: document.getElementById('leaveEndDate').value,
+          leaveReason: document.getElementById('leaveReason').value,
+          employeeSignature: employeeSignature,
+          supervisorSignature: document.getElementById('supervisorSignature').value,
+          hrApprovalSignature: document.getElementById('hrApprovalSignature').value,
+          managementApprovalSignature: document.getElementById('managementApprovalSignature').value
+        };
+        return JSON.stringify(data, null, 2);
+      }
+      // Save Modal Functions
+      function openSaveModal() {
+        document.getElementById("fileNameInput").value = fileHandle ? fileHandle.name : "leaveform.json";
+        document.getElementById("saveModal").style.display = "flex";
+      }
+      function closeSaveModal() {
+        document.getElementById("saveModal").style.display = "none";
+      }
+      document.getElementById("modalCancel").addEventListener("click", closeSaveModal);
+      document.getElementById("modalSave").addEventListener("click", async function () {
+        const fileName = document.getElementById("fileNameInput").value.trim() || "leaveform.json";
+        const jsonData = getFormData();
+        if (window.showSaveFilePicker) {
+          try {
+            if (!fileHandle || fileHandle.name !== fileName) {
+              fileHandle = await window.showSaveFilePicker({
+                suggestedName: fileName,
+                types: [{
+                  description: "JSON Files",
+                  accept: { "application/json": [".json"] }
+                }]
+              });
+            }
+            const writable = await fileHandle.createWritable();
+            await writable.write(jsonData);
+            await writable.close();
+            alert("File saved successfully!");
+          } catch (err) {
+            console.error("File save canceled or failed:", err);
+          }
+        } else {
+          const blob = new Blob([jsonData], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 100);
+          alert("File downloaded. (Fallback method)");
+        }
+        closeSaveModal();
       });
-    }
-  </script>  
-</body>
+      // Load Functionality (always opens the file picker)
+      async function loadData() {
+        try {
+          if (window.showOpenFilePicker) {
+            const [pickedHandle] = await window.showOpenFilePicker({
+              types: [{
+                description: "JSON Files",
+                accept: { "application/json": [".json"] }
+              }]
+            });
+            fileHandle = pickedHandle;
+            const file = await fileHandle.getFile();
+            const text = await file.text();
+            let data;
+            try {
+              data = JSON.parse(text);
+            } catch (e) {
+              throw new Error("Invalid JSON");
+            }
+            // Validate expected structure
+            if (
+              typeof data !== "object" ||
+              !("dateOfRequest" in data) ||
+              !("employeeName" in data) ||
+              !("leaveReason" in data)
+            ) {
+              throw new Error("File format does not match expected structure.");
+            }
+            // Populate fields
+            document.getElementById('dateOfRequest').value = data.dateOfRequest || '';
+            document.getElementById('leaveType').value = data.leaveType || '';
+            document.getElementById('employeeName').value = data.employeeName || '';
+            document.getElementById('employeeID').value = data.employeeID || '';
+            document.getElementById('leaveStartDate').value = data.leaveStartDate || '';
+            document.getElementById('leaveEndDate').value = data.leaveEndDate || '';
+            document.getElementById('leaveReason').value = data.leaveReason || '';
+            // For employee signature, if data exists, set the image
+            if(data.employeeSignature) {
+              document.getElementById('employeeSignaturePad').innerHTML = 
+                `<img src="${data.employeeSignature}" style="max-height: 60px; max-width: 100%; object-fit: contain;">`;
+            } else {
+              document.getElementById('employeeSignaturePad').innerHTML = "";
+            }
+            document.getElementById('supervisorSignature').value = data.supervisorSignature || '';
+            document.getElementById('hrApprovalSignature').value = data.hrApprovalSignature || '';
+            document.getElementById('managementApprovalSignature').value = data.managementApprovalSignature || '';
+            alert("File loaded successfully!");
+          } else {
+            alert("File picker not supported in this browser.");
+          }
+        } catch (error) {
+          console.error("Error loading file:", error);
+          alert("Failed to load file: " + error.message);
+        }
+      }
+      // Auto-resize for the Reason textarea (and any with class "auto-resize")
+      document.addEventListener('input', function(e) {
+        if(e.target.tagName === 'TEXTAREA' && e.target.classList.contains('auto-resize')) {
+          e.target.style.height = "auto";
+          e.target.style.height = e.target.scrollHeight + "px";
+        }
+      });
+      // Print Preview Functionality (with mobile tip)
+      function openPrintPreview() {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile) {
+          alert("📱 Mobile Tip: Tap your browser menu (⋮ or Share) and choose 'Print'.");
+          setTimeout(() => window.print(), 300);
+        } else {
+          window.print();
+        }
+      }
+    </script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.log('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  </body>
 </html>
