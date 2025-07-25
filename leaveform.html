@@ -198,8 +198,9 @@
       }
       @media print {
         @page {
-          margin: 5mm;
+          margin: 2mm;
         }
+        /* Hide non-printable sections */
         .actions,
         .form-footer,
         .upload-signature,
@@ -208,13 +209,22 @@
         }
         body {
           background: white;
-        }
-        .form-container {
-          box-shadow: none;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          font-size: 10px !important;
+          line-height: 1.2;
           margin: 0;
           padding: 0;
+        }
+        .form-container {
+          box-shadow: none !important;
+          margin: 0;
+          padding: 2mm;
           max-width: 100%;
           width: 100%;
+        }
+        th, td {
+          padding: 1px 2px;
         }
       }
     </style>
@@ -235,6 +245,7 @@
             <datalist id="leaveOptions">
               <option value="Sick">
               <option value="Vacation">
+              <option value="Emergency">
               <option value="Maternity">
               <option value="Paternity">
               <option value="Solo Parent">
@@ -333,7 +344,7 @@
       let fileHandle = null;
       // Utility: Gather all form data into a JSON string
       function getFormData() {
-        // If a signature image is present (employee signature), capture its innerHTML (or src of image)
+        // If a signature image is present (employee signature), capture its data URL
         let employeeSignature = "";
         const sigImg = document.querySelector("#employeeSignaturePad img");
         if(sigImg) {
