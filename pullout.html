@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Pullout of Materials Pass</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#003066">
-
+  <meta name="theme-color" content="#003066">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,28 +21,45 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 10px;
     }
+    /* Header Section */
+    .header-section {
+      text-align: center;
+    }
+    .header-section img {
+      max-width: 100%;
+      height: auto;
+    }
     h2 {
       text-align: center;
       margin-bottom: 20px;
     }
+    /* Field rows for header fields */
     .field-row {
       display: flex;
       gap: 10px;
       margin-bottom: 10px;
     }
     .field-row label {
-      flex: 1;
+      width: 100%;
+      font-weight: bold;
     }
-    label input {
+    .field-row label textarea {
       width: 100%;
       padding: 6px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+      box-sizing: border-box;
+      resize: none; /* managed by auto-resize script */
+      overflow: hidden;
     }
+    /* Table Styles */
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 20px 0;
+      table-layout: auto;
     }
     th, td {
       border: 1px solid #ccc;
@@ -57,14 +74,21 @@
       padding: 6px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      font-family: inherit;
       font-size: 14px;
       box-sizing: border-box;
     }
     textarea {
       width: 100%;
       resize: vertical;
+      overflow: hidden;
     }
+    /* Auto-resize class for textareas */
+    .auto-resize {
+      overflow: hidden;
+      resize: none;
+      width: 100%;
+    }
+    /* Actions Button Styles */
     .actions {
       text-align: right;
       margin-bottom: 10px;
@@ -81,6 +105,7 @@
     .actions button:hover {
       background-color: #004999;
     }
+    /* Signature Table */
     .signature-table {
       width: 100%;
       margin-top: 30px;
@@ -96,85 +121,381 @@
       padding: 6px;
       border-radius: 4px;
     }
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    }
+    .modal-content h2 {
+      margin-top: 0;
+    }
+    .modal-content label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .modal-content input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .modal-actions {
+      text-align: right;
+      margin-top: 15px;
+    }
+    .modal-actions button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .modal-actions .cancel-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+    .modal-actions .save-btn {
+      background-color: #0066cc;
+      color: white;
+    }
+    /* Underline style for labels if needed */
+    .underline {
+      text-decoration: underline;
+    }
+    /* Center align content in certain table columns */
+    table th:nth-child(1) input,
+    table td:nth-child(1) input,
+    table th:nth-child(3) input,
+    table td:nth-child(3) input,
+    table th:nth-child(4) input,
+    table td:nth-child(4) input,
+    table th:nth-child(1) textarea,
+    table td:nth-child(1) textarea,
+    table th:nth-child(3) textarea,
+    table td:nth-child(3) textarea,
+    table th:nth-child(4) textarea,
+    table td:nth-child(4) textarea {
+      text-align: center;
+    }
+    /* Print Styles */
     @media print {
-      .actions, button {
-        display: none !important;
+      @page { margin: 5mm; }
+      .actions, button, .modal { display: none !important; }
+      input, textarea { border: none; }
+      body, input, textarea, strong, label, h2 {
+        font-size: 12px !important;
       }
-      input, textarea {
-        border: none;
+      .field-row label textarea,.signature-table input {
+        border: none !important;
       }
+      
+      body {
+        background: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+      }
+      .form-container {
+        box-shadow: none !important;
+        margin: 0;
+        padding: 5mm;
+      }
+      th, td { padding: 2px 4px; }
     }
   </style>
 </head>
 <body>
-
-<div class="form-container">
-
-  <div style="text-align: center;">
-    <img src="header.png" alt="Fecient Header" style="max-width: 100%; height: auto;" />
-  </div>
-
-  <h2>PULLOUT OF MATERIALS PASS</h2>
-
-  <div class="field-row">
-    <label>Location: <input type="text"></label>
-    <label>Purpose: <input type="text"></label>
-    <label>Date: <input type=""></label>
-  </div>
-  <div class="field-row">
-    <label>Destination: <input type="text"></label>
-    <label>Project Title: <input type="text"></label>
-  </div>
-  <div class="field-row">
-    <label>Owner: <input type="text"></label>
-    <label>Contractor: <input type="text"></label>
-  </div>
-
-  <div class="actions">
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="window.print()">Print</button>
-  </div>
-
-  <table>
-    <thead>
+  <div class="form-container">
+    <!-- Header Logo & Title -->
+    <div class="header-section">
+      <img src="header.png" alt="Company Header">
+    </div>
+    <h2>PULLOUT OF MATERIALS PASS</h2>
+    <!-- Header Fields with auto-resizing textareas -->
+    <div class="field-row">
+      <label>
+        Location:
+        <textarea id="location" class="auto-resize underline" rows="1"></textarea>
+      </label>
+      <label>
+        Purpose:
+        <textarea id="purposeField" class="auto-resize underline" rows="1"></textarea>
+      </label>
+      <label>
+        Date:
+        <textarea id="date" class="auto-resize underline" rows="1"></textarea>
+      </label>
+    </div>
+    <div class="field-row">
+      <label>
+        Destination:
+        <textarea id="destination" class="auto-resize underline" rows="1"></textarea>
+      </label>
+      <label>
+        Project Title:
+        <textarea id="projectTitle" class="auto-resize underline" rows="1"></textarea>
+      </label>
+    </div>
+    <div class="field-row">
+      <label>
+        Owner:
+        <textarea id="owner" class="auto-resize underline" rows="1"></textarea>
+      </label>
+      <label>
+        Contractor:
+        <textarea id="contractor" class="auto-resize underline" rows="1"></textarea>
+      </label>
+    </div>
+    <!-- Action Buttons -->
+    <div class="actions">
+      <button onclick="addRow()">Add Row</button>
+      <button onclick="openSaveModal()">Save</button>
+      <button onclick="loadData()">Load</button>
+      <button onclick="window.print()">Print</button>
+    </div>
+    <!-- Items Table -->
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 80px;">Item #</th>
+          <th style="width: 50%;">Description</th>
+          <th style="width: 100px;">Quantity</th>
+          <th>Unit</th>
+          <th class="actions">Action</th>
+        </tr>
+      </thead>
+      <tbody id="pullout-table"></tbody>
+    </table>
+    <div style="text-align: center; font-style: italic;">Nothing Follows</div>
+    <!-- Signature Table -->
+    <table class="signature-table">
       <tr>
-        <th style="width: 80px;">Item #</th>
-        <th style="width: 50%;">Description</th>
-        <th style="width: 100px;">Quantity</th>
-        <th>Unit</th>
-        <th class="actions">Action</th>
+        <td>
+          <strong>Pulled out by:</strong><br><br>
+          <input type="text" id="pulledOutBy" class="underline" style="font-weight: bold; text-align: left;" ><br>
+          <small>FECIENT Solutions Provider</small><br>
+          Date: <input type="text" id="pulledOutDate" style="margin-left: 5px; width: 120px; text-align: center;">
+        </td>
+        <td>
+          <strong>Approved by:</strong><br><br>
+          <input type="text" id="approvedBy" class="underline" style="font-weight: bold; text-align: left;" >
+        </td>
+        <td>
+          <strong>Checked by:</strong><br><br>
+          <input type="text" id="checkedBy" class="underline" style="font-weight: bold; text-align: left;" ><br>
+          <small>Gate Security</small><br>
+          Date: <input type="text" id="checkedDate" class="underline" style="margin-left: 5px; width: 120px; text-align: center;" >
+        </td>
       </tr>
-    </thead>
-    <tbody id="pullout-table"></tbody>
-  </table>
-
-  <div style="text-align:center; font-style: italic;">Nothing Follows</div>
-
-  <table class="signature-table">
-    <tr>
-      <td>Pulled out by:<br><input type="text"><br><small>FECIENT Solutions Provider</small><br>Date: <input type=""></td>
-      <td>Approved by:<br><input type="text"></td>
-      <td>Checked by:<br><input type="text"><br><small>Gate Security</small><br>Date: <input type=""></td>
-    </tr>
-  </table>
-
-</div>
-
-<script>
-  function addRow() {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td><input type="text" style="width: 80px;"></td>
-      <td><textarea rows="2"></textarea></td>
-      <td><input type="number" min="0" style="width: 80px;"></td>
-      <td><input type="text"></td>
-      <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
-    `;
-    document.getElementById('pullout-table').appendChild(row);
-  }
-  for (let i = 0; i < 3; i++) addRow();
-</script>
-<script>
+    </table>
+  </div>
+  <!-- Save File Modal -->
+  <div id="saveModal" class="modal">
+    <div class="modal-content">
+      <h2>Save File</h2>
+      <label for="fileNameInput">Enter File Name:</label>
+      <input id="fileNameInput" type="text" placeholder="pullout.json">
+      <div class="modal-actions">
+        <button class="cancel-btn" id="modalCancel">Cancel</button>
+        <button class="save-btn" id="modalSave">Save</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    let fileHandle = null;
+    
+    // Helper: Adjust heights of all auto-resize textareas.
+    function adjustTextareas() {
+      document.querySelectorAll('textarea.auto-resize').forEach(textarea => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      });
+    }
+    
+    // Gather form data as a JSON string.
+    function getFormData() {
+      const data = {
+        location: document.getElementById('location').value,
+        purpose: document.getElementById('purposeField').value,
+        date: document.getElementById('date').value,
+        destination: document.getElementById('destination').value,
+        projectTitle: document.getElementById('projectTitle').value,
+        owner: document.getElementById('owner').value,
+        contractor: document.getElementById('contractor').value,
+        rows: [],
+        pulledOutBy: document.getElementById('pulledOutBy').value,
+        pulledOutDate: document.getElementById('pulledOutDate').value,
+        approvedBy: document.getElementById('approvedBy').value,
+        checkedBy: document.getElementById('checkedBy').value,
+        checkedDate: document.getElementById('checkedDate').value
+      };
+      document.querySelectorAll('#pullout-table tr').forEach(row => {
+        const inputs = row.querySelectorAll('input, textarea');
+        data.rows.push({
+          item: inputs[0].value,
+          description: inputs[1].value,
+          quantity: inputs[2].value,
+          unit: inputs[3].value
+        });
+      });
+      return JSON.stringify(data, null, 2);
+    }
+    
+    // Add a new row to the table.
+    function addRow(rowData = {}) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><input type="text" style="width: 80px;" value="${rowData.item || ''}"></td>
+        <td><textarea rows="2" class="auto-resize">${rowData.description || ''}</textarea></td>
+        <td><input type="number" min="0" style="width: 80px;" value="${rowData.quantity || ''}"></td>
+        <td><input type="text" value="${rowData.unit || ''}"></td>
+        <td class="actions"><button onclick="this.closest('tr').remove()">Delete</button></td>
+      `;
+      document.getElementById('pullout-table').appendChild(row);
+      adjustTextareas();
+    }
+    
+    // Auto-add 3 default rows.
+    for (let i = 0; i < 3; i++) {
+      addRow();
+    }
+    
+    // Modal functionality.
+    const saveModal = document.getElementById("saveModal");
+    const modalCancel = document.getElementById("modalCancel");
+    const modalSave = document.getElementById("modalSave");
+    
+    function openSaveModal() {
+      document.getElementById("fileNameInput").value = fileHandle ? fileHandle.name : "pullout.json";
+      saveModal.style.display = "flex";
+    }
+    function closeSaveModal() {
+      saveModal.style.display = "none";
+    }
+    modalCancel.addEventListener("click", closeSaveModal);
+    modalSave.addEventListener("click", async function () {
+      const fileName = document.getElementById("fileNameInput").value.trim() || "pullout.json";
+      const jsonData = getFormData();
+      if (window.showSaveFilePicker) {
+        try {
+          if (!fileHandle || fileHandle.name !== fileName) {
+            fileHandle = await window.showSaveFilePicker({
+              suggestedName: fileName,
+              types: [{
+                description: "JSON Files",
+                accept: { "application/json": [".json"] }
+              }]
+            });
+          }
+          const writable = await fileHandle.createWritable();
+          await writable.write(jsonData);
+          await writable.close();
+          alert("File saved successfully!");
+        } catch (err) {
+          console.error("File save canceled or failed:", err);
+        }
+      } else {
+        const blob = new Blob([jsonData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+        alert("File downloaded. (Fallback method)");
+      }
+      closeSaveModal();
+    });
+    
+    // Load data from file.
+    async function loadData() {
+      try {
+        if (window.showOpenFilePicker) {
+          const [pickedHandle] = await window.showOpenFilePicker({
+            types: [{
+              description: "JSON Files",
+              accept: { "application/json": [".json"] }
+            }]
+          });
+          fileHandle = pickedHandle;
+          const file = await fileHandle.getFile();
+          const text = await file.text();
+          let data;
+          try {
+            data = JSON.parse(text);
+          } catch (e) {
+            throw new Error("Invalid JSON");
+          }
+          if (
+            typeof data !== "object" ||
+            !("location" in data) ||
+            !("date" in data) ||
+            !("rows" in data) ||
+            !Array.isArray(data.rows)
+          ) {
+            throw new Error("File format does not match expected structure.");
+          }
+          document.getElementById('location').value = data.location || '';
+          document.getElementById('purposeField').value = data.purpose || '';
+          document.getElementById('date').value = data.date || '';
+          document.getElementById('destination').value = data.destination || '';
+          document.getElementById('projectTitle').value = data.projectTitle || '';
+          document.getElementById('owner').value = data.owner || '';
+          document.getElementById('contractor').value = data.contractor || '';
+          const tableBody = document.getElementById('pullout-table');
+          tableBody.innerHTML = '';
+          data.rows.forEach(rowData => addRow(rowData));
+          document.getElementById('pulledOutBy').value = data.pulledOutBy || '';
+          document.getElementById('pulledOutDate').value = data.pulledOutDate || '';
+          document.getElementById('approvedBy').value = data.approvedBy || '';
+          document.getElementById('checkedBy').value = data.checkedBy || '';
+          document.getElementById('checkedDate').value = data.checkedDate || '';
+          // Adjust textareas to show full content
+          adjustTextareas();
+          alert("File loaded successfully!");
+        } else {
+          alert("File picker not supported in this browser.");
+        }
+      } catch (error) {
+        console.error("Error loading file:", error);
+        alert("Failed to load file: " + error.message);
+      }
+    }
+    
+    // Single event listener for auto-resizing textareas on input.
+    document.addEventListener('input', function(e) {
+      if (e.target.tagName.toLowerCase() === 'textarea' && e.target.classList.contains('auto-resize')) {
+        e.target.style.height = 'auto';
+        e.target.style.height = e.target.scrollHeight + 'px';
+      }
+    });
+    
+    // Adjust auto-resize textareas on window load.
+    window.addEventListener('load', adjustTextareas);
+  </script>
+  <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js')
