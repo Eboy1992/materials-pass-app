@@ -2,220 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-  <title>Materials Pass Menu</title>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#003066">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Desktop Form App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-grey-900 text-gray-200 font-sans text-sm">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: white;
-    }
+  <!-- Main Wrapper -->
+  <div class="max-w-7xl mx-auto p-6 min-h-screen">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6 bg-slate-700 p-4 rounded-lg shadow">
+      <img src="images/logo2.png" class="h-20" />
+      <div class="text-2xl font-bold text-blue-400 tracking-wide">📁 Company Form System</div>
+      <img src="images/logo1.png" class="h-20" />
+    </div>
 
-    header {
-      background-color: #003066;
-      color: white;
-      text-align: center;
-      padding: 12px;
-    }
+    <!-- Navigation Buttons -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <button onclick="loadPage('entry.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Entry</button>
+      <button onclick="loadPage('pullout.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Pullout</button>
+      <button onclick="loadPage('purchaserequest.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Purchase Request</button>
+      <button onclick="loadPage('leaveform.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Leave</button>
+      <button onclick="loadPage('transmittal.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Transmittal</button>
+    </div>
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      background: #e0e0e0;
-      padding: 10px;
-    }
+    <!-- Iframe Display -->
+    <div class="border border-slate-600 rounded-lg overflow-hidden shadow-lg h-[75vh] bg-white relative">
+  <iframe id="form-frame" class="w-full h-full border-none hidden"></iframe>
+  <img id="default-image" src="Fecient.png" class="w-full h-full object-cover object-center absolute top-0 left-0" />
+</div>
 
-    .nav-button {
-      background-color: #cc0000;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 15px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      flex: 1 1 140px;
-      text-align: center;
-    }
-
-    .nav-button:hover {
-      background-color: #003f7f;
-      transform: translateY(-2px);
-    }
-
-    .nav-button.active {
-      background-color: #002244;
-      box-shadow: inset 0 0 0 3px #66ccff;
-    }
-
-    iframe {
-      width: 100%;
-      height: 85vh;
-      border: none;
-      display: none;
-    }
-
-    .back-button {
-      display: none;
-      background-color: #cc0000;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin: 10px auto;
-    }
-
-    .back-button:hover {
-      background-color: #990000;
-      transform: translateY(-2px);
-    }
-
-    .back-container {
-      text-align: center;
-      margin-top: -20px;
-    }
-
-    .efficiency-banner,
-    .company-logo,
-    .logo-container {
-      text-align: center;
-      margin: 20px auto;
-      padding: 0 10px;
-    }
-
-    .efficiency-banner img,
-    .company-logo img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 480px) {
-      .nav-button {
-        padding: 10px;
-        font-size: 14px;
-        flex: 1 1 100%;
-      }
-
-      header h1 {
-        font-size: 18px;
-        padding: 10px;
-      }
-
-      iframe {
-        height: 80vh;
-      }
-    }
-  </style>
+  <!-- Password Lock -->
   <script>
     window.onload = function () {
       const password = "Rico@2025";
       const input = prompt("Enter password to access this page:");
       if (input !== password) {
         alert("Access denied!");
-        document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Unauthorized Access</h2>";
+        document.body.innerHTML = "<h2 class='text-center mt-10 text-red-600 text-xl'>Unauthorized Access</h2>";
         return;
       }
-
-      const navButtons = document.querySelectorAll('.nav-button');
-      const iframe = document.querySelector('iframe');
-      const backButton = document.querySelector('.back-button');
-      const navBar = document.querySelector('nav');
-      const efficiencyBanner = document.querySelector('.efficiency-banner');
-      const companyLogo = document.querySelector('.company-logo');
-
-      navButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
-          e.preventDefault();
-
-          efficiencyBanner.style.display = 'none';
-          companyLogo.style.display = 'none';
-
-          navButtons.forEach(btn => {
-            btn.classList.remove('active');
-            btn.style.display = 'none';
-          });
-
-          this.classList.add('active');
-          backButton.style.display = 'inline-block';
-          navBar.style.display = 'none';
-          iframe.style.display = 'block';
-          iframe.src = this.getAttribute('href');
-        });
-      });
-
-      backButton.addEventListener('click', function () {
-        navButtons.forEach(btn => {
-          btn.style.display = 'inline-block';
-          btn.classList.remove('active');
-        });
-
-        navBar.style.display = 'flex';
-        iframe.style.display = 'none';
-        iframe.src = "";
-        backButton.style.display = 'none';
-
-        efficiencyBanner.style.display = 'block';
-        companyLogo.style.display = 'block';
-      });
     };
   </script>
-</head>
-<body>
 
-<header>
-  <h1>ACCESS CONTROL, REQUESTS AND LEAVE MANAGEMENT SYSTEM</h1>
-</header>
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('SW registered:', reg.scope))
+          .catch(err => console.log('SW registration failed:', err));
+      });
+    }
+  </script>
 
-<nav>
-  <a class="nav-button" href="pullout.html" target="frame">Pullout Pass</a>
-  <a class="nav-button" href="entry.html" target="frame">Entry Pass</a>
-  <a class="nav-button" href="purchaserequest.html" target="frame">Purchase Request</a>
-  <a class="nav-button" href="leaveform.html" target="frame">Leave Form</a>
-  <a class="nav-button" href="transmittal.html" target="frame">Transmittal Form</a>
-</nav>
+  <!-- Iframe Page Loader -->
+  <script>
+    function loadPage(page) {
+      document.getElementById("form-frame").src = page;
+    }
+  </script>
+  <script>
+  function loadPage(page) {
+    const iframe = document.getElementById("form-frame");
+    const defaultImage = document.getElementById("default-image");
 
-<div class="logo-container">
-  <div class="efficiency-banner">
-    <img src="images/logo1.png" alt="Efficiency Matters!">
-  </div>
-  <div class="company-logo">
-    <img src="images/logo2.png" alt="Fecient Solutions Provider">
-  </div>
-</div>
-
-<div class="back-container">
-  <button class="back-button">Back to Choose a Form</button>
-</div>
-
-<iframe name="frame"></iframe>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(registration => {
-          console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(error => {
-          console.log('Service Worker registration failed:', error);
-        });
-    });
+    iframe.src = page;
+    iframe.classList.remove("hidden");
+    defaultImage.classList.add("hidden");
   }
 </script>
-  
 </body>
 </html>
-
