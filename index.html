@@ -6,71 +6,69 @@
   <title>Desktop Form App</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-grey-900 text-gray-200 font-sans text-sm">
+<body class="bg-gray-800 text-gray-200 font-sans text-sm">
 
   <!-- Main Wrapper -->
-  <div class="max-w-7xl mx-auto p-6 min-h-screen">
+  <div class="max-w-7xl mx-auto p-4 md:p-6 min-h-screen">
+
     <!-- Header -->
-    <div class="flex justify-between items-center mb-6 bg-slate-700 p-4 rounded-lg shadow">
-      <img src="images/logo2.png" class="h-20" />
-      <div class="text-2xl font-bold text-blue-400 tracking-wide">📁 Company Form System</div>
-      <img src="images/logo1.png" class="h-20" />
+    <div class="flex flex-col md:flex-row justify-between items-center mb-6 bg-slate-700 p-4 rounded-lg shadow gap-4">
+      <img src="images/logo2.png" class="h-16 md:h-20 mx-auto md:mx-0" />
+      <div class="text-xl md:text-2xl font-bold text-blue-400 text-center tracking-wide">📁FSP Form's</div>
+      <img src="images/logo1.png" class="h-16 md:h-20 mx-auto md:mx-0" />
     </div>
 
     <!-- Navigation Buttons -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      <button onclick="loadPage('entry.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Entry</button>
-      <button onclick="loadPage('pullout.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Pullout</button>
-      <button onclick="loadPage('purchaserequest.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Purchase Request</button>
-      <button onclick="loadPage('leaveform.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Leave</button>
-      <button onclick="loadPage('transmittal.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow">Transmittal</button>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+      <button onclick="loadPage('entry.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow w-full">Entry</button>
+      <button onclick="loadPage('pullout.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow w-full">Pullout</button>
+      <button onclick="loadPage('purchaserequest.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow w-full">Purchase Request</button>
+      <button onclick="loadPage('leaveform.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow w-full">Leave</button>
+      <button onclick="loadPage('transmittal.html')" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded shadow w-full">Transmittal</button>
     </div>
 
     <!-- Iframe Display -->
-    <div class="border border-slate-600 rounded-lg overflow-hidden shadow-lg h-[75vh] bg-white relative">
-  <iframe id="form-frame" class="w-full h-full border-none hidden"></iframe>
-  <img id="default-image" src="Fecient.png" class="w-full h-full object-cover object-center absolute top-0 left-0" />
-</div>
+    <div class="border border-slate-600 rounded-lg overflow-hidden shadow-lg h-[70vh] md:h-[75vh] bg-white relative">
+      <iframe id="form-frame" class="w-full h-full border-none hidden"></iframe>
+      <img id="default-image" src="Fecient.png" class="w-full h-full object-cover object-center absolute top-0 left-0" />
+    </div>
 
-  <!-- Password Lock -->
-  <script>
-    window.onload = function () {
-      const password = "Rico@2025";
-      const input = prompt("Enter password to access this page:");
-      if (input !== password) {
-        alert("Access denied!");
-        document.body.innerHTML = "<h2 class='text-center mt-10 text-red-600 text-xl'>Unauthorized Access</h2>";
-        return;
+    <!-- Password Lock -->
+    <script>
+      window.onload = function () {
+        const password = "Rico@2025";
+        const input = prompt("Enter password to access this page:");
+        if (input !== password) {
+          alert("Access denied!");
+          document.body.innerHTML = "<h2 class='text-center mt-10 text-red-600 text-xl'>Unauthorized Access</h2>";
+          return;
+        }
+      };
+    </script>
+
+    <!-- Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(reg => console.log('SW registered:', reg.scope))
+            .catch(err => console.log('SW registration failed:', err));
+        });
       }
-    };
-  </script>
+    </script>
 
-  <!-- Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => console.log('SW registered:', reg.scope))
-          .catch(err => console.log('SW registration failed:', err));
-      });
-    }
-  </script>
+    <!-- Iframe Page Loader -->
+    <script>
+      function loadPage(page) {
+        const iframe = document.getElementById("form-frame");
+        const defaultImage = document.getElementById("default-image");
 
-  <!-- Iframe Page Loader -->
-  <script>
-    function loadPage(page) {
-      document.getElementById("form-frame").src = page;
-    }
-  </script>
-  <script>
-  function loadPage(page) {
-    const iframe = document.getElementById("form-frame");
-    const defaultImage = document.getElementById("default-image");
+        iframe.src = page;
+        iframe.classList.remove("hidden");
+        defaultImage.classList.add("hidden");
+      }
+    </script>
 
-    iframe.src = page;
-    iframe.classList.remove("hidden");
-    defaultImage.classList.add("hidden");
-  }
-</script>
+  </div>
 </body>
 </html>
